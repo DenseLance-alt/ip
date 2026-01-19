@@ -10,19 +10,18 @@ public class YoshikageKira {
         System.out.println("\tWhat can I do for you?");
         System.out.println(separator);
 
+        boolean done = false;
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> textList = new ArrayList<>();
-        while (true) {
+        while (!done) {
             String command = scanner.nextLine();
 
-            // Exit Program
-            if (command.equals("bye")) {
-                break;
-            }
-
-            // Respond to Other Commands
+            // Respond to Commands
             System.out.println(separator);
-            if (command.equals("list")) {
+            if (command.equals("bye")) {
+                done = true;
+                System.out.println("\tBye. Hope to see you again soon!");
+            } else if (command.equals("list")) {
                 for (int i = 0; i < textList.size(); i++) {
                     System.out.println(
                             String.format("\t%d. %s", i + 1, textList.get(i)));
@@ -33,10 +32,6 @@ public class YoshikageKira {
             }
             System.out.println(separator);
         }
-
         scanner.close();
-        System.out.println(separator);
-        System.out.println("\tBye. Hope to see you again soon!");
-        System.out.println(separator);
     }
 }
