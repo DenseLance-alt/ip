@@ -1,4 +1,4 @@
-public class Duke {
+public class YoshikageKira {
     public static void main(String[] args) {
         String separator = "____________________________________________________________";
         System.out.println(separator);
