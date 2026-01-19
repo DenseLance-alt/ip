@@ -12,7 +12,7 @@ public class YoshikageKira {
 
         boolean done = false;
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> textList = new ArrayList<>();
+        ArrayList<Task> taskList = new ArrayList<>();
         while (!done) {
             String command = scanner.nextLine();
 
@@ -22,12 +22,27 @@ public class YoshikageKira {
                 done = true;
                 System.out.println("\tBye. Hope to see you again soon!");
             } else if (command.equals("list")) {
-                for (int i = 0; i < textList.size(); i++) {
+                for (int i = 0; i < taskList.size(); i++) {
                     System.out.println(
-                            String.format("\t%d. %s", i + 1, textList.get(i)));
+                            String.format("\t%d.%s", i + 1, taskList.get(i)));
                 }
+            } else if (command.startsWith("mark ")) {
+                String[] segments = command.split(" ", 2);
+                int taskNumber = Integer.parseInt(segments[1]);
+                Task task = taskList.get(taskNumber - 1);
+                task.markTask();
+                System.out.println("\tNice! I've marked this task as done:");
+                System.out.println("\t  " + task);
+            } else if (command.startsWith("unmark ")) {
+                String[] segments = command.split(" ", 2);
+                int taskNumber = Integer.parseInt(segments[1]);
+                Task task = taskList.get(taskNumber - 1);
+                task.unmarkTask();
+                System.out.println("\tOK, I've marked this task as not done yet:");
+                System.out.println("\t  " + task);
             } else {
-                textList.add(command);
+                Task task = new Task(command);
+                taskList.add(task);
                 System.out.println("\tadded: " + command);
             }
             System.out.println(separator);
