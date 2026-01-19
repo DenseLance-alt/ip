@@ -4,9 +4,14 @@ public class ToDo extends Task {
     }
 
     @Override
+    public String getCategory() {
+        return "T";
+    }
+
+    @Override
     public String toString() {
         return String.format(
-                "[D]%s",
+                "%s",
                 super.toString());
     }
 }

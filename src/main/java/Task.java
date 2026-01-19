@@ -19,10 +19,15 @@ public class Task {
         return this.completed ? "X" : " "; // mark completed tasks with "X"
     }
 
+    public String getCategory() {
+        return "";
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "[%s] %s",
+                "[%s][%s] %s",
+                this.getCategory(),
                 this.getStatusIcon(),
                 this.name);
     }

@@ -9,9 +9,14 @@ public class Event extends Task {
     }
 
     @Override
+    public String getCategory() {
+        return "E";
+    }
+
+    @Override
     public String toString() {
         return String.format(
-                "[E]%s (from: %s to: %s)",
+                "%s (from: %s to: %s)",
                 super.toString(),
                 this.from,
                 this.to);

@@ -7,9 +7,14 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getCategory() {
+        return "D";
+    }
+
+    @Override
     public String toString() {
         return String.format(
-                "[D]%s (by: %s)",
+                "%s (by: %s)",
                 super.toString(),
                 this.by);
     }
