@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import task.Deadline;
 import task.Event;
@@ -7,80 +7,107 @@ import task.Task;
 import task.ToDo;
 
 public class YoshikageKira {
+
     public static void main(String[] args) {
         String separator = "\t____________________________________________________________";
 
         System.out.println(separator);
-        System.out.println("\tHello! My name is Yoshikage Kira.");
-        System.out.println("\tWhat can I do for you?");
+        System.out.println("\tMy name is Yoshikage Kira. I'm 33 " +
+                "years old. My house is in \n\tthe northeast " +
+                "section of Morioh, where all the villas are, \n\t" +
+                "and I am not married. I work as an employee for " +
+                "the Kame Yu \n\tdepartment stores, and I get home " +
+                "every day by 8 PM at the \n\tlatest. I don't " +
+                "smoke, but I occasionally drink. I'm in bed \n\tby " +
+                "11 PM, and make sure I get eight hours of sleep, " +
+                "no \n\tmatter what. After having a glass of warm " +
+                "milk and doing \n\tabout twenty minutes of " +
+                "stretches before going to bed, I \n\tusually have " +
+                "no problems sleeping until morning. Just like \n\t" +
+                "a baby, I wake up without any fatigue or stress " +
+                "in the \n\tmorning. I was told there were no " +
+                "issues at my last \n\tcheck-up. I'm trying to " +
+                "explain that I'm a person who \n\twishes to live a " +
+                "very quiet life. I take care not to \n\ttrouble " +
+                "myself with any enemies, like winning and losing, " +
+                "\n\tthat would cause me to lose sleep at night. " +
+                "That is how I \n\tdeal with society, and I know " +
+                "that is what brings me \n\thappiness. Although, if " +
+                "I were to fight I wouldn't lose to \n\tanyone.");
+        System.out.println("\n\tWhat can I do for you?");
         System.out.println(separator);
 
         boolean done = false;
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> taskList = new ArrayList<>();
+
         while (!done) {
             String input = scanner.nextLine();
+            String[] segments = input.split(" ", 2);
+            String command = segments[0];
 
             // Respond to Commands
             System.out.println(separator);
-            if (input.equals("bye")) {
-                done = true;
-                System.out.println("\tBye. Hope to see you again soon!");
-            } else if (input.equals("list")) {
-                System.out.println("\tHere are the tasks in your list:");
-                for (int i = 0; i < taskList.size(); i++) {
-                    System.out.println(
-                            String.format("\t%d.%s", i + 1, taskList.get(i)));
+            switch (command.toLowerCase()) {
+                case "bye" -> {
+                    done = true;
+                    System.out.println("\tNo... No, No, No! " +
+                            "Where are they taking me!? " +
+                            "They're dragging me away! Nooo!");
                 }
-            } else if (input.startsWith("mark ")) {
-                String[] segments = input.split(" ", 2);
-                int taskNumber = Integer.parseInt(segments[1]);
-                Task task = taskList.get(taskNumber - 1);
-                task.markTask();
-                System.out.println("\tNice! I've marked this task as done:");
-                System.out.println("\t  " + task);
-            } else if (input.startsWith("unmark ")) {
-                String[] segments = input.split(" ", 2);
-                int taskNumber = Integer.parseInt(segments[1]);
-                Task task = taskList.get(taskNumber - 1);
-                task.unmarkTask();
-                System.out.println("\tOK, I've marked this task as not done yet:");
-                System.out.println("\t  " + task);
-            } else if (input.startsWith("todo ")) {
-                String[] segments = input.split(" ", 2);
-                ToDo task = new ToDo(segments[1]);
-                taskList.add(task);
-                System.out.println("\tGot it. I've added this task:");
-                System.out.println("\t  " + task);
-                System.out.println(String.format(
-                        "\tNow you have %d tasks in the list.",
-                        taskList.size()));
-            } else if (input.startsWith("deadline ")) {
-                String[] segments = input.split(" ", 2);
-                segments = segments[1].split(" /by ", 2);
-                Deadline task = new Deadline(segments[0], segments[1]);
-                taskList.add(task);
-                System.out.println("\tGot it. I've added this task:");
-                System.out.println("\t  " + task);
-                System.out.println(String.format(
-                        "\tNow you have %d tasks in the list.",
-                        taskList.size()));
-            } else if (input.startsWith("event ")) {
-                String[] segments = input.split(" ", 2);
-                segments = segments[1].split(" /from ", 2);
-                String event = segments[0];
-                segments = segments[1].split(" /to ", 2);
-                Event task = new Event(event, segments[0], segments[1]);
-                taskList.add(task);
-                System.out.println("\tGot it. I've added this task:");
-                System.out.println("\t  " + task);
-                System.out.println(String.format(
-                        "\tNow you have %d tasks in the list.",
-                        taskList.size()));
-            } else {
-                Task task = new Task(input);
-                taskList.add(task);
-                System.out.println("\tadded: " + input);
+                case "list" -> {
+                    System.out.println("\tHere are the tasks in your list:");
+                    for (int i = 0; i < taskList.size(); i++) {
+                        System.out.println(
+                                String.format("\t%d.%s", i + 1, taskList.get(i)));
+                    }
+                }
+                case "mark" -> {
+                    int taskNumber = Integer.parseInt(segments[1]);
+                    Task task = taskList.get(taskNumber - 1);
+                    task.markTask();
+                    System.out.println("\tNice! I've marked this task as done:");
+                    System.out.println("\t  " + task);
+                }
+                case "unmark" -> {
+                    int taskNumber = Integer.parseInt(segments[1]);
+                    Task task = taskList.get(taskNumber - 1);
+                    task.unmarkTask();
+                    System.out.println("\tOK, I've marked this task as not done yet:");
+                    System.out.println("\t  " + task);
+                }
+                case "todo" -> {
+                    ToDo task = new ToDo(segments[1]);
+                    taskList.add(task);
+                    System.out.println("\tGot it. I've added this task:");
+                    System.out.println("\t  " + task);
+                    System.out.println(String.format(
+                            "\tNow you have %d tasks in the list.",
+                            taskList.size()));
+                }
+                case "deadline" -> {
+                    segments = segments[1].split(" /by ", 2);
+                    Deadline task = new Deadline(segments[0], segments[1]);
+                    taskList.add(task);
+                    System.out.println("\tGot it. I've added this task:");
+                    System.out.println("\t  " + task);
+                    System.out.println(String.format(
+                            "\tNow you have %d tasks in the list.",
+                            taskList.size()));
+                }
+                case "event" -> {
+                    segments = segments[1].split(" /from ", 2);
+                    String event = segments[0];
+                    segments = segments[1].split(" /to ", 2);
+                    Event task = new Event(event, segments[0], segments[1]);
+                    taskList.add(task);
+                    System.out.println("\tGot it. I've added this task:");
+                    System.out.println("\t  " + task);
+                    System.out.println(String.format(
+                            "\tNow you have %d tasks in the list.",
+                            taskList.size()));
+                }
+                default -> System.out.println("\tINVALID INPUT - Unknown command provided.");
             }
             System.out.println(separator);
         }
