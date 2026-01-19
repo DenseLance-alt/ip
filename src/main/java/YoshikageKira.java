@@ -6,7 +6,7 @@ public class YoshikageKira {
         String separator = "\t____________________________________________________________";
 
         System.out.println(separator);
-        System.out.println("\tHello! I'm Yoshikage Kira");
+        System.out.println("\tHello! My name is Yoshikage Kira.");
         System.out.println("\tWhat can I do for you?");
         System.out.println(separator);
 
