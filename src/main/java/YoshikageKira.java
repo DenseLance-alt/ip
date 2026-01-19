@@ -1,6 +1,11 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+
 public class YoshikageKira {
     public static void main(String[] args) {
         String separator = "\t____________________________________________________________";
