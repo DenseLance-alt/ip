@@ -7,7 +7,6 @@ import task.Task;
 import task.ToDo;
 
 public class YoshikageKira {
-
     public static void main(String[] args) {
         String separator = "\t____________________________________________________________";
 
@@ -53,7 +52,7 @@ public class YoshikageKira {
                     done = true;
                     System.out.println("\tNo... No, No, No! " +
                             "Where are they taking me!? " +
-                            "They're dragging me away! Nooo!");
+                            "They're \n\tdragging me away! Nooo!");
                 }
                 case "list" -> {
                     System.out.println("\tHere are the tasks in your list:");
