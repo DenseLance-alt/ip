@@ -146,6 +146,18 @@ public class YoshikageKira {
                             "\tNow you have %d tasks in the list.",
                             taskList.size()));
                 }
+                case "delete" -> {
+                    if (segments.length < 2 || "".equals(segments[1])) {
+                        throw new MissingParameterException("Task ID");
+                    }
+                    int taskNumber = Integer.parseInt(segments[1]);
+                    Task task = taskList.remove(taskNumber - 1);
+                    System.out.println("\tNoted. I've removed this task:");
+                    System.out.println("\t  " + task);
+                    System.out.println(String.format(
+                            "\tNow you have %d tasks in the list.",
+                            taskList.size()));
+                }
                 default -> throw new UnknownCommandException();
                 }
             } catch (ChatbotException e) {

@@ -11,4 +11,18 @@ list
 deadline return book /by Sunday
 event project meeting /from Mon 2pm /to 4pm
 list
+todo
+unmark
+blah
+event project /from /to 4pm
+event project /to 4pm
+event project /from Sat 8am
+event project /from Sat 8am /to
+event /from Sat 8am /to 4pm
+mark 10
+unmark 0
+delete read book
+delete 3
+delete 0
+list
 bye

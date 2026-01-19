@@ -18,10 +18,10 @@
 	happiness. Although, if I were to fight I wouldn't lose to 
 	anyone.
 
-        What can I do for you?
+	What can I do for you?
 	____________________________________________________________
 	____________________________________________________________
-	Here are the tasks in your list:
+	You have no tasks!
 	____________________________________________________________
 	____________________________________________________________
 	Got it. I've added this task:
@@ -89,6 +89,60 @@
 	5.[T][ ] borrow book
 	6.[D][ ] return book (by: Sunday)
 	7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+	____________________________________________________________
+	____________________________________________________________
+	MISSING PARAMETER - Task name must be included in the input.
+	____________________________________________________________
+	____________________________________________________________
+	MISSING PARAMETER - Task ID must be included in the input.
+	____________________________________________________________
+	____________________________________________________________
+	INVALID COMMAND - Unknown command provided.
+	____________________________________________________________
+	____________________________________________________________
+	MISSING FLAG - '/from' and its positional argument must be 
+	included in the input.
+	____________________________________________________________
+	____________________________________________________________
+	MISSING FLAG - '/from' and its positional argument must be 
+	included in the input.
+	____________________________________________________________
+	____________________________________________________________
+	MISSING FLAG - '/to' and its positional argument must be 
+	included in the input.
+	____________________________________________________________
+	____________________________________________________________
+	MISSING FLAG - '/to' and its positional argument must be 
+	included in the input.
+	____________________________________________________________
+	____________________________________________________________
+	MISSING PARAMETER - Task name must be included in the input.
+	____________________________________________________________
+	____________________________________________________________
+	INVALID PARAMETER - Task ID is not found in list of tasks.
+	____________________________________________________________
+	____________________________________________________________
+	INVALID PARAMETER - Task ID is not found in list of tasks.
+	____________________________________________________________
+	____________________________________________________________
+	INVALID PARAMETER - Task ID is not a number.
+	____________________________________________________________
+	____________________________________________________________
+	Noted. I've removed this task:
+	  [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+	Now you have 6 tasks in the list.
+	____________________________________________________________
+	____________________________________________________________
+	INVALID PARAMETER - Task ID is not found in list of tasks.
+	____________________________________________________________
+	____________________________________________________________
+	Here are the tasks in your list:
+	1.[T][X] read book
+	2.[D][ ] return book (by: June 6th)
+	3.[T][X] join sports club
+	4.[T][ ] borrow book
+	5.[D][ ] return book (by: Sunday)
+	6.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 	____________________________________________________________
 	____________________________________________________________
 	No... No, No, No! Where are they taking me!? They're 
