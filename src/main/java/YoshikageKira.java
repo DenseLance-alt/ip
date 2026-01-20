@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import command.Command;
 import exception.ChatbotException;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
@@ -47,19 +48,20 @@ public class YoshikageKira {
         while (!done) {
             String input = scanner.nextLine();
             String[] segments = input.split(" ", 2);
-            String command = segments[0];
+            Command command = Command.convertToCommand(segments[0]);
+
 
             // Respond to Commands
             System.out.println(separator);
             try {
-                switch (command.toLowerCase()) {
-                case "bye" -> {
+                switch (command) {
+                case BYE -> {
                     done = true;
                     System.out.println("\tNo... No, No, No! " +
                             "Where are they taking me!? " +
                             "They're \n\tdragging me away! Nooo!");
                 }
-                case "list" -> {
+                case LIST -> {
                     if (!taskList.isEmpty()) {
                         System.out.println("\tHere are the tasks in your list:");
                         for (int i = 0; i < taskList.size(); i++) {
@@ -70,7 +72,7 @@ public class YoshikageKira {
                         System.out.println("\tYou have no tasks!");
                     }
                 }
-                case "mark" -> {
+                case MARK -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task ID");
                     }
@@ -80,7 +82,7 @@ public class YoshikageKira {
                     System.out.println("\tNice! I've marked this task as done:");
                     System.out.println("\t  " + task);
                 }
-                case "unmark" -> {
+                case UNMARK -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task ID");
                     }
@@ -90,7 +92,7 @@ public class YoshikageKira {
                     System.out.println("\tOK, I've marked this task as not done yet:");
                     System.out.println("\t  " + task);
                 }
-                case "todo" -> {
+                case TODO -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task name");
                     }
@@ -102,7 +104,7 @@ public class YoshikageKira {
                             "\tNow you have %d tasks in the list.",
                             taskList.size()));
                 }
-                case "deadline" -> {
+                case DEADLINE -> {
                     if (segments.length < 2 ||
                             "".equals(segments[1]) ||
                             segments[1].startsWith("/by")) {
@@ -120,7 +122,7 @@ public class YoshikageKira {
                             "\tNow you have %d tasks in the list.",
                             taskList.size()));
                 }
-                case "event" -> {
+                case EVENT -> {
                     if (segments.length < 2 ||
                             "".equals(segments[1]) ||
                             segments[1].startsWith("/from")) {
@@ -145,7 +147,7 @@ public class YoshikageKira {
                             "\tNow you have %d tasks in the list.",
                             taskList.size()));
                 }
-                case "delete" -> {
+                case DELETE -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task ID");
                     }
