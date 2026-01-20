@@ -15,6 +15,7 @@ public class YoshikageKira {
     public static void main(String[] args) {
         String separator = "\t____________________________________________________________";
 
+        // Adapted from the copypasta https://www.reddit.com/r/copypasta/comments/mmaq30/my_name_is_yoshikage_kira/
         System.out.println(separator);
         System.out.println("\tMy name is Yoshikage Kira. I'm 33 " +
                 "years old. My house is in \n\tthe northeast " +
