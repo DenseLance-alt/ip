@@ -1,9 +1,13 @@
 package task;
 
-public class Deadline extends Task {
-    private String by;
+import parser.DateTimeParser;
 
-    public Deadline(String name, String by) {
+import java.time.LocalDateTime;
+
+public class Deadline extends Task {
+    private LocalDateTime by;
+
+    public Deadline(String name, LocalDateTime by) {
         super(name);
         this.by = by;
     }
@@ -18,7 +22,7 @@ public class Deadline extends Task {
         return String.format(
                 "%s | %s",
                 super.toFormattedString(),
-                this.by);
+                DateTimeParser.formatDateTime(this.by, TaskManager.FILE_DATE_FORMAT));
     }
 
     @Override
@@ -26,6 +30,6 @@ public class Deadline extends Task {
         return String.format(
                 "%s (by: %s)",
                 super.toString(),
-                this.by);
+                DateTimeParser.formatDateTime(this.by, TaskManager.PRINT_DATE_FORMAT));
     }
 }
