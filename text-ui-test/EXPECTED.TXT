@@ -144,6 +144,9 @@
 	5.[D][ ] return book (by: Sunday)
 	6.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 	____________________________________________________________
+        ____________________________________________________________
+	I have cleared your entire task list!
+        ____________________________________________________________
 	____________________________________________________________
 	No... No, No, No! Where are they taking me!? 
 	They're dragging me away! Nooo!

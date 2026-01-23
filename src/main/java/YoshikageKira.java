@@ -4,6 +4,7 @@ import command.Command;
 import exception.ChatbotException;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
+import exception.InvalidCommandException;
 import exception.UnknownCommandException;
 import task.Deadline;
 import task.Event;
@@ -49,6 +50,9 @@ public class YoshikageKira {
             // Respond to Commands
             System.out.println(separator);
             try {
+                if (input.contains("|")) {
+                    throw new InvalidCommandException(); // delimiter is reserved for saving to file
+                }
                 switch (command) {
                 case BYE -> {
                     done = true;
@@ -116,6 +120,9 @@ public class YoshikageKira {
                     }
                     int taskNumber = Integer.parseInt(segments[1]);
                     taskManager.removeTask(taskNumber);
+                }
+                case CLEAR -> {
+                    taskManager.clearList(true);
                 }
                 default -> throw new UnknownCommandException();
                 }

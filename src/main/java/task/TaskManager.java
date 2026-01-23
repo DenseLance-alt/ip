@@ -1,42 +1,102 @@
 package task;
 
+import exception.CorruptedFileException;
+
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
+import java.util.Scanner;
 
 public class TaskManager {
-    private boolean initializedFile;
     private ArrayList<Task> taskList;
     private static final Path FILEPATH = Paths.get("./temp/tasks.txt");
 
     public TaskManager() {
-        this.initializedFile = false;
         this.taskList = new ArrayList<>();
         try {
-            Files.createDirectories(FILEPATH.getParent()); // creates directory if it does not exist
-            FileWriter f = new FileWriter(FILEPATH.toFile());
-            f.write(""); // reset file contents if it exists
-            f.close();
-            this.initializedFile = true;
+            if (!Files.exists(FILEPATH)) {
+                Files.createDirectories(FILEPATH.getParent()); // create new directory
+                this.clearFile(); // create new file
+            } else {
+                this.readFile();
+            }
         } catch (IOException e) {
             System.err.println("WARNING - Unable to save tasks to file.");
+        } catch (CorruptedFileException e) {
+            System.err.println("WARNING - Save file is corrupted. Resetting save file.");
+            this.clearList(); // implicitly also clears the file
         }
     }
 
-    public void updateFile() {
-        if (this.initializedFile) {
-            try {
-                FileWriter f = new FileWriter(FILEPATH.toFile());
-                for (int i = 0; i < this.taskList.size(); i++) {
-                    f.write(this.taskList.get(i).toFormattedString() + System.lineSeparator());
-                }
-                f.close();
-            } catch (IOException e) {
-                System.err.println("WARNING - Unable to save tasks to file.");
+    private void clearList() {
+        this.taskList.clear();
+        this.clearFile();
+    }
+
+    public void clearList(boolean print) {
+        this.clearList();
+        if (print) {
+            System.out.println("\tI have cleared your entire task list!");
+        }
+    }
+
+    public void clearFile() {
+        try {
+            FileWriter f = new FileWriter(FILEPATH.toFile());
+            f.write("");
+            f.close();
+        } catch (IOException e) {
+            System.err.println("WARNING - Unable to reset and create new file.");
+        }
+    }
+
+    public void readFile() throws CorruptedFileException {
+        try {
+            Scanner reader = new Scanner(FILEPATH.toFile());
+            while (reader.hasNext()) {
+                Task task = this.getTaskFromString(reader.nextLine());
+                this.taskList.add(task); // add task quietly
             }
+        } catch (FileNotFoundException e) {
+            System.err.println("WARNING - Unable to read tasks from file.");
+        }
+    }
+
+    private Task getTaskFromString(String taskFormattedString) throws CorruptedFileException {
+        String[] segments = taskFormattedString.split(" \\| ");
+        if (segments.length > 2) {
+            Task task = null;
+            if (segments[0].equals("T") && segments.length == 3) {
+                task = new ToDo(segments[2]);
+            } else if (segments[0].equals("D") && segments.length == 4) {
+                task = new Deadline(segments[2], segments[3]);
+            } else if (segments[0].equals("E") && segments.length == 5) {
+                task = new Event(segments[2], segments[3], segments[4]);
+            }
+
+            if (task != null) {
+                if (segments[1].equals("X")) {
+                    task.markTask();
+                }
+                return task;
+            }
+        }
+        throw new CorruptedFileException();
+    }
+
+    public void updateFile() {
+        try {
+            FileWriter f = new FileWriter(FILEPATH.toFile());
+            for (int i = 0; i < this.taskList.size(); i++) {
+                f.write(this.taskList.get(i).toFormattedString() + System.lineSeparator());
+            }
+            f.close();
+        } catch (IOException e) {
+            System.err.println("WARNING - Unable to save tasks to file.");
         }
     }
 
