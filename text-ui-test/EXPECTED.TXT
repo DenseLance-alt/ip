@@ -24,17 +24,17 @@
 	You have no tasks!
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this chatbot.task:
 	  [T][ ] read book
 	Now you have 1 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this chatbot.task:
 	  [D][ ] return book (by: 2019-12-03 6pm)
 	Now you have 2 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this chatbot.task:
 	  [E][ ] project meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
 	Now you have 3 tasks in the list.
 	____________________________________________________________
@@ -45,20 +45,20 @@
 	3.[E][ ] project meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
 	____________________________________________________________
 	____________________________________________________________
-	Nice! I've marked this task as done:
+	Nice! I've marked this chatbot.task as done:
 	  [T][X] read book
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this chatbot.task:
 	  [T][ ] join sports club
 	Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Nice! I've marked this task as done:
+	Nice! I've marked this chatbot.task as done:
 	  [T][X] join sports club
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this chatbot.task:
 	  [T][ ] borrow book
 	Now you have 5 tasks in the list.
 	____________________________________________________________
@@ -71,7 +71,7 @@
 	5.[T][ ] borrow book
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this chatbot.task:
 	  [D][ ] return book (by: 2019-12-05 11pm)
 	Now you have 6 tasks in the list.
 	____________________________________________________________
@@ -82,7 +82,7 @@
 	MISSING PARAMETER - Task ID must be included in the input.
 	____________________________________________________________
 	____________________________________________________________
-	INVALID COMMAND - Unknown command provided.
+	INVALID COMMAND - Unknown chatbot.command provided.
 	____________________________________________________________
 	____________________________________________________________
 	MISSING FLAG - '/from' and its positional argument must be 
@@ -116,7 +116,7 @@
 	INVALID PARAMETER - Task ID is not a number.
 	____________________________________________________________
 	____________________________________________________________
-	Noted. I've removed this task:
+	Noted. I've removed this chatbot.task:
 	  [E][ ] project meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
 	Now you have 5 tasks in the list.
 	____________________________________________________________
@@ -132,7 +132,7 @@
 	5.[D][ ] return book (by: 2019-12-05 11pm)
 	____________________________________________________________
 	____________________________________________________________
-	I have cleared your entire task list!
+	I have cleared your entire chatbot.task list!
 	____________________________________________________________
 	____________________________________________________________
 	No... No, No, No! Where are they taking me!? 
