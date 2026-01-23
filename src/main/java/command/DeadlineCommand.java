@@ -5,7 +5,7 @@ import exception.MissingParameterException;
 import parser.DateTimeParser;
 import task.Deadline;
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public class DeadlineCommand extends Command {
     public DeadlineCommand(String fragment) {

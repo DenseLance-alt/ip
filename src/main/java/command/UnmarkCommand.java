@@ -2,7 +2,7 @@ package command;
 
 import exception.MissingParameterException;
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public class UnmarkCommand extends Command {
     public UnmarkCommand(String fragment) {

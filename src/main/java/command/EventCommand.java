@@ -5,7 +5,7 @@ import exception.MissingParameterException;
 import parser.DateTimeParser;
 import task.Event;
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public class EventCommand extends Command {
     public EventCommand(String fragment) {

@@ -1,7 +1,7 @@
 package command;
 
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public class ListCommand extends Command {
     public ListCommand(String fragment) {

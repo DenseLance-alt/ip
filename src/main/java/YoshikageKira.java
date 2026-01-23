@@ -4,14 +4,9 @@ import command.Command;
 import exception.ChatbotException;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
-import exception.UnknownCommandException;
 import parser.CommandParser;
-import parser.DateTimeParser;
-import task.Deadline;
-import task.Event;
 import task.TaskManager;
-import task.ToDo;
-import ui.Ui;
+import utils.Ui;
 
 public class YoshikageKira {
     private Ui ui;
@@ -24,7 +19,6 @@ public class YoshikageKira {
 
     public void run() {
         this.ui.sayHello();
-
         while (!ui.isDone()) {
             String input = this.ui.getUserInput();
             this.ui.printSeparator();

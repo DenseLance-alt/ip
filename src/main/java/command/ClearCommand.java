@@ -1,7 +1,7 @@
 package command;
 
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public class ClearCommand extends Command {
     public ClearCommand(String fragment) {

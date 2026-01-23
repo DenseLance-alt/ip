@@ -3,7 +3,7 @@ package command;
 import exception.MissingParameterException;
 import task.TaskManager;
 import task.ToDo;
-import ui.Ui;
+import utils.Ui;
 
 public class ToDoCommand extends Command {
     public ToDoCommand(String fragment) {

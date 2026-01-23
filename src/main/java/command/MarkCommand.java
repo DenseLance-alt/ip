@@ -2,7 +2,7 @@ package command;
 
 import exception.MissingParameterException;
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public class MarkCommand extends Command {
     public MarkCommand(String fragment) {

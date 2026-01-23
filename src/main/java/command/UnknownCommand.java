@@ -3,7 +3,7 @@ package command;
 import exception.ChatbotException;
 import exception.UnknownCommandException;
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public class UnknownCommand extends Command {
     public UnknownCommand(String fragment) {

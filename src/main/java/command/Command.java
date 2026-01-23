@@ -4,7 +4,7 @@ import exception.ChatbotException;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
 import task.TaskManager;
-import ui.Ui;
+import utils.Ui;
 
 public abstract class Command {
     private String fragment;
