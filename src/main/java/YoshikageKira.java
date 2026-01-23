@@ -40,11 +40,11 @@ public class YoshikageKira {
         System.out.println(System.lineSeparator() + "\tWhat can I do for you?");
         System.out.println(separator);
 
-        boolean done = false;
+        boolean isDone = false;
         Scanner scanner = new Scanner(System.in);
         TaskManager taskManager = new TaskManager();
 
-        while (!done) {
+        while (!isDone) {
             String input = scanner.nextLine();
             String[] segments = input.split(" ", 2);
             Command command = Command.convertToCommand(segments[0]);
@@ -57,7 +57,7 @@ public class YoshikageKira {
                 }
                 switch (command) {
                 case BYE -> {
-                    done = true;
+                    isDone = true;
                     System.out.println("\tNo... No, No, No! Where are they taking me!? ");
                     System.out.println("\tThey're dragging me away! Nooo!");
                 }

@@ -2,23 +2,23 @@ package task;
 
 public abstract class Task {
     private String name;
-    private boolean completed;
+    private boolean isCompleted;
 
     public Task(String name) {
         this.name = name;
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     public void markTask() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     public void unmarkTask() {
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     public String getStatusIcon() {
-        return this.completed ? "X" : " "; // mark completed tasks with "X"
+        return this.isCompleted ? "X" : " "; // mark completed tasks with "X"
     }
 
     public abstract String getCategory();

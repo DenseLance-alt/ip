@@ -41,9 +41,9 @@ public class TaskManager {
         this.clearFile();
     }
 
-    public void clearList(boolean print) {
+    public void clearList(boolean shouldPrint) {
         this.clearList();
-        if (print) {
+        if (shouldPrint) {
             System.out.println("\tI have cleared your entire task list!");
         }
     }
