@@ -6,7 +6,8 @@ public enum Command {
     LIST, // list all tasks
     MARK, UNMARK, // mark/unmark task
     TODO, DEADLINE, EVENT, // create tasks
-    DELETE; // delete task
+    DELETE, // delete task
+    CLEAR; // clear all tasks in list
 
     public static Command convertToCommand(String commandString) {
         commandString = commandString.toUpperCase();

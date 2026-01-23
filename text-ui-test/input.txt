@@ -25,4 +25,5 @@ delete read book
 delete 3
 delete 0
 list
+clear
 bye
