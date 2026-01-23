@@ -21,8 +21,14 @@ public abstract class Task {
         return this.completed ? "X" : " "; // mark completed tasks with "X"
     }
 
-    public String getCategory() {
-        return "";
+    public abstract String getCategory();
+
+    public String toFormattedString() {
+        return String.format(
+                "%s | %s | %s",
+                this.getCategory(),
+                this.getStatusIcon(),
+                this.name);
     }
 
     @Override

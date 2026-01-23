@@ -14,6 +14,14 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String toFormattedString() {
+        return String.format(
+                "%s | %s",
+                super.toFormattedString(),
+                this.by);
+    }
+
+    @Override
     public String toString() {
         return String.format(
                 "%s (by: %s)",

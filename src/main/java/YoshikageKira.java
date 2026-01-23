@@ -1,5 +1,3 @@
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import command.Command;
@@ -9,7 +7,7 @@ import exception.MissingParameterException;
 import exception.UnknownCommandException;
 import task.Deadline;
 import task.Event;
-import task.Task;
+import task.TaskManager;
 import task.ToDo;
 
 public class YoshikageKira {
@@ -41,7 +39,7 @@ public class YoshikageKira {
 
         boolean done = false;
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> taskList = new ArrayList<>();
+        TaskManager taskManager = new TaskManager();
 
         while (!done) {
             String input = scanner.nextLine();
@@ -54,52 +52,30 @@ public class YoshikageKira {
                 switch (command) {
                 case BYE -> {
                     done = true;
-                    System.out.println("\tNo... No, No, No! " +
-                            "Where are they taking me!? " +
-                            "They're \n\tdragging me away! Nooo!");
+                    System.out.println("\tNo... No, No, No! Where are they taking me!? ");
+                    System.out.println("\tThey're dragging me away! Nooo!");
                 }
-                case LIST -> {
-                    if (!taskList.isEmpty()) {
-                        System.out.println("\tHere are the tasks in your list:");
-                        for (int i = 0; i < taskList.size(); i++) {
-                            System.out.println(
-                                    String.format("\t%d.%s", i + 1, taskList.get(i)));
-                        }
-                    } else {
-                        System.out.println("\tYou have no tasks!");
-                    }
-                }
+                case LIST -> taskManager.listTasks();
                 case MARK -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task ID");
                     }
                     int taskNumber = Integer.parseInt(segments[1]);
-                    Task task = taskList.get(taskNumber - 1);
-                    task.markTask();
-                    System.out.println("\tNice! I've marked this task as done:");
-                    System.out.println("\t  " + task);
+                    taskManager.markTask(taskNumber);
                 }
                 case UNMARK -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task ID");
                     }
                     int taskNumber = Integer.parseInt(segments[1]);
-                    Task task = taskList.get(taskNumber - 1);
-                    task.unmarkTask();
-                    System.out.println("\tOK, I've marked this task as not done yet:");
-                    System.out.println("\t  " + task);
+                    taskManager.unmarkTask(taskNumber);
                 }
                 case TODO -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task name");
                     }
                     ToDo task = new ToDo(segments[1]);
-                    taskList.add(task);
-                    System.out.println("\tGot it. I've added this task:");
-                    System.out.println("\t  " + task);
-                    System.out.println(String.format(
-                            "\tNow you have %d tasks in the list.",
-                            taskList.size()));
+                    taskManager.addTask(task);
                 }
                 case DEADLINE -> {
                     if (segments.length < 2 ||
@@ -112,12 +88,7 @@ public class YoshikageKira {
                         throw new MissingFlagException("/by");
                     }
                     Deadline task = new Deadline(segments[0], segments[1]);
-                    taskList.add(task);
-                    System.out.println("\tGot it. I've added this task:");
-                    System.out.println("\t  " + task);
-                    System.out.println(String.format(
-                            "\tNow you have %d tasks in the list.",
-                            taskList.size()));
+                    taskManager.addTask(task);
                 }
                 case EVENT -> {
                     if (segments.length < 2 ||
@@ -137,24 +108,14 @@ public class YoshikageKira {
                         throw new MissingFlagException("/to");
                     }
                     Event task = new Event(event, segments[0], segments[1]);
-                    taskList.add(task);
-                    System.out.println("\tGot it. I've added this task:");
-                    System.out.println("\t  " + task);
-                    System.out.println(String.format(
-                            "\tNow you have %d tasks in the list.",
-                            taskList.size()));
+                    taskManager.addTask(task);
                 }
                 case DELETE -> {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingParameterException("Task ID");
                     }
                     int taskNumber = Integer.parseInt(segments[1]);
-                    Task task = taskList.remove(taskNumber - 1);
-                    System.out.println("\tNoted. I've removed this task:");
-                    System.out.println("\t  " + task);
-                    System.out.println(String.format(
-                            "\tNow you have %d tasks in the list.",
-                            taskList.size()));
+                    taskManager.removeTask(taskNumber);
                 }
                 default -> throw new UnknownCommandException();
                 }
