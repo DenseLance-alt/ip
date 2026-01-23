@@ -94,7 +94,7 @@ public class YoshikageKira {
                         throw new MissingFlagException("/by");
                     }
                     Deadline task = new Deadline(segments[0],
-                            DateTimeParser.parseDateTime(segments[1], TaskManager.FILE_DATE_FORMAT));
+                            DateTimeParser.parseDateTime(segments[1], TaskManager.DATE_FORMAT_FILE));
                     taskManager.addTask(task);
                 }
                 case EVENT -> {
@@ -115,8 +115,8 @@ public class YoshikageKira {
                         throw new MissingFlagException("/to");
                     }
                     Event task = new Event(event,
-                            DateTimeParser.parseDateTime(segments[0], TaskManager.FILE_DATE_FORMAT),
-                            DateTimeParser.parseDateTime(segments[1], TaskManager.FILE_DATE_FORMAT));
+                            DateTimeParser.parseDateTime(segments[0], TaskManager.DATE_FORMAT_FILE),
+                            DateTimeParser.parseDateTime(segments[1], TaskManager.DATE_FORMAT_FILE));
                     taskManager.addTask(task);
                 }
                 case DELETE -> {

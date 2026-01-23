@@ -16,8 +16,8 @@ import java.util.Scanner;
 public class TaskManager {
     private ArrayList<Task> taskList;
     private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
-    public static final String FILE_DATE_FORMAT = "d/M/yyyy H:mm";
-    public static final String PRINT_DATE_FORMAT = "yyyy-MM-dd ha";
+    public static final String DATE_FORMAT_FILE = "d/M/yyyy H:mm";
+    public static final String DATE_FORMAT_PRINT = "yyyy-MM-dd ha";
 
     public TaskManager() {
         this.taskList = new ArrayList<>();
@@ -80,11 +80,11 @@ public class TaskManager {
                 task = new ToDo(segments[2]);
             } else if (segments[0].equals("D") && segments.length == 4) {
                 task = new Deadline(segments[2],
-                        DateTimeParser.parseDateTime(segments[3], FILE_DATE_FORMAT));
+                        DateTimeParser.parseDateTime(segments[3], DATE_FORMAT_FILE));
             } else if (segments[0].equals("E") && segments.length == 5) {
                 task = new Event(segments[2],
-                        DateTimeParser.parseDateTime(segments[3], FILE_DATE_FORMAT),
-                        DateTimeParser.parseDateTime(segments[4], FILE_DATE_FORMAT));
+                        DateTimeParser.parseDateTime(segments[3], DATE_FORMAT_FILE),
+                        DateTimeParser.parseDateTime(segments[4], DATE_FORMAT_FILE));
             }
 
             if (task != null) {
