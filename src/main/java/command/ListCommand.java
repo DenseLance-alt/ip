@@ -1,6 +1,5 @@
 package command;
 
-import exception.ChatbotException;
 import task.TaskManager;
 import ui.Ui;
 
