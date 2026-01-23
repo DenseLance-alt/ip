@@ -1,6 +1,6 @@
 package exception;
 
-public class ChatbotException extends Exception {
+public abstract class ChatbotException extends Exception {
     public ChatbotException() {
         super();
     }

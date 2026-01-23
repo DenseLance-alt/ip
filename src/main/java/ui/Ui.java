@@ -28,21 +28,34 @@ public class Ui {
     public static final String SEPARATOR = "\t____________________________________________________________";
 
     private Scanner scanner;
+    private boolean isDone;
 
     public Ui() {
         this.scanner = new Scanner(System.in);
+        this.isDone = false;
     }
 
     public void sayHello() {
+        System.out.println(SEPARATOR);
         System.out.println(INTRODUCTION);
+        System.out.println(SEPARATOR);
     }
 
     public void sayGoodbye() {
         System.out.println(FAREWELL);
         this.scanner.close();
+        this.isDone = true;
+    }
+
+    public void printSeparator() {
+        System.out.println(SEPARATOR);
     }
 
     public String getUserInput() {
         return this.scanner.nextLine();
+    }
+
+    public boolean isDone() {
+        return this.isDone;
     }
 }
