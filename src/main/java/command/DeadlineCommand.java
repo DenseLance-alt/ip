@@ -3,9 +3,10 @@ package command;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
 import parser.DateTimeParser;
+import storage.TaskList;
+import storage.TaskStorage;
 import task.Deadline;
-import task.TaskManager;
-import utils.Ui;
+import ui.Ui;
 
 public class DeadlineCommand extends Command {
     public DeadlineCommand(String fragment) {
@@ -13,7 +14,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskManager taskManager) throws MissingParameterException, MissingFlagException {
+    public void execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
         String fragment = this.getFragment();
         if ("".equals(fragment) || fragment.startsWith("/by")) {
             throw new MissingParameterException("Task name");
@@ -23,7 +24,7 @@ public class DeadlineCommand extends Command {
             throw new MissingFlagException("/by");
         }
         Deadline task = new Deadline(segments[0],
-                DateTimeParser.parseDateTime(segments[1], TaskManager.DATE_FORMAT_FILE));
-        taskManager.addTask(task);
+                DateTimeParser.parseDateTime(segments[1], TaskStorage.DATE_FORMAT));
+        taskList.addTask(task);
     }
 }

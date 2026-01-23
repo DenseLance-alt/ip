@@ -1,10 +1,10 @@
-package utils;
+package ui;
 
 import java.util.Scanner;
 
 public class Ui {
     // Adapted from the copypasta https://www.reddit.com/r/copypasta/comments/mmaq30/my_name_is_yoshikage_kira/
-    public static final String INTRODUCTION = "\tMy name is Yoshikage Kira. I'm 33 years old. My house is in " +
+    private static final String INTRODUCTION = "\tMy name is Yoshikage Kira. I'm 33 years old. My house is in " +
             System.lineSeparator() + "\tthe northeast section of Morioh, where all the villas are, " +
             System.lineSeparator() + "\tand I am not married. I work as an employee for the Kame Yu " +
             System.lineSeparator() + "\tdepartment stores, and I get home every day by 8 PM at the " +
@@ -23,9 +23,9 @@ public class Ui {
             System.lineSeparator() + "\thappiness. Although, if I were to fight I wouldn't lose to " +
             System.lineSeparator() + "\tanyone." + System.lineSeparator() +
             System.lineSeparator() + "\tWhat can I do for you?";
-    public static final String FAREWELL = "\tNo... No, No, No! Where are they taking me!? " +
+    private static final String FAREWELL = "\tNo... No, No, No! Where are they taking me!? " +
             System.lineSeparator() + "\tThey're dragging me away! Nooo!";
-    public static final String SEPARATOR = "\t____________________________________________________________";
+    private static final String SEPARATOR = "\t____________________________________________________________";
 
     private Scanner scanner;
     private boolean isDone;

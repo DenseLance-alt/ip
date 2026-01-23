@@ -1,7 +1,7 @@
 package command;
 
-import task.TaskManager;
-import utils.Ui;
+import storage.TaskList;
+import ui.Ui;
 
 public class ListCommand extends Command {
     public ListCommand(String fragment) {
@@ -9,7 +9,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskManager taskManager) {
-        taskManager.listTasks();
+    public void execute(Ui ui, TaskList taskList) {
+        taskList.listTasks();
     }
 }

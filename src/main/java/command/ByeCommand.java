@@ -1,7 +1,7 @@
 package command;
 
-import task.TaskManager;
-import utils.Ui;
+import storage.TaskList;
+import ui.Ui;
 
 public class ByeCommand extends Command {
     public ByeCommand(String fragment) {
@@ -9,7 +9,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskManager taskManager) {
+    public void execute(Ui ui, TaskList taskList) {
         ui.sayGoodbye();
     }
 }

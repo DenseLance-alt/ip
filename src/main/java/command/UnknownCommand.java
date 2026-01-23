@@ -2,8 +2,8 @@ package command;
 
 import exception.ChatbotException;
 import exception.UnknownCommandException;
-import task.TaskManager;
-import utils.Ui;
+import storage.TaskList;
+import ui.Ui;
 
 public class UnknownCommand extends Command {
     public UnknownCommand(String fragment) {
@@ -11,7 +11,7 @@ public class UnknownCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskManager taskManager) throws ChatbotException {
+    public void execute(Ui ui, TaskList taskList) throws ChatbotException {
         throw new UnknownCommandException();
     }
 }

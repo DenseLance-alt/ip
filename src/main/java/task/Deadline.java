@@ -1,6 +1,8 @@
 package task;
 
 import parser.DateTimeParser;
+import storage.TaskList;
+import storage.TaskStorage;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +24,7 @@ public class Deadline extends Task {
         return String.format(
                 "%s | %s",
                 super.toFormattedString(),
-                DateTimeParser.formatDateTime(this.by, TaskManager.DATE_FORMAT_FILE));
+                DateTimeParser.formatDateTime(this.by, TaskStorage.DATE_FORMAT));
     }
 
     @Override
@@ -30,6 +32,6 @@ public class Deadline extends Task {
         return String.format(
                 "%s (by: %s)",
                 super.toString(),
-                DateTimeParser.formatDateTime(this.by, TaskManager.DATE_FORMAT_PRINT));
+                DateTimeParser.formatDateTime(this.by, TaskList.DATE_FORMAT));
     }
 }

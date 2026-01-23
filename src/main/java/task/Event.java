@@ -1,6 +1,8 @@
 package task;
 
 import parser.DateTimeParser;
+import storage.TaskList;
+import storage.TaskStorage;
 
 import java.time.LocalDateTime;
 
@@ -24,8 +26,8 @@ public class Event extends Task {
         return String.format(
                 "%s | %s | %s",
                 super.toFormattedString(),
-                DateTimeParser.formatDateTime(this.from, TaskManager.DATE_FORMAT_FILE),
-                DateTimeParser.formatDateTime(this.to, TaskManager.DATE_FORMAT_FILE));
+                DateTimeParser.formatDateTime(this.from, TaskStorage.DATE_FORMAT),
+                DateTimeParser.formatDateTime(this.to, TaskStorage.DATE_FORMAT));
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Event extends Task {
         return String.format(
                 "%s (from: %s to: %s)",
                 super.toString(),
-                DateTimeParser.formatDateTime(this.from, TaskManager.DATE_FORMAT_PRINT),
-                DateTimeParser.formatDateTime(this.to, TaskManager.DATE_FORMAT_PRINT));
+                DateTimeParser.formatDateTime(this.from, TaskList.DATE_FORMAT),
+                DateTimeParser.formatDateTime(this.to, TaskList.DATE_FORMAT));
     }
 }

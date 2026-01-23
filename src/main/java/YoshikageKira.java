@@ -1,20 +1,21 @@
-import java.time.DateTimeException;
-
 import command.Command;
 import exception.ChatbotException;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
 import parser.CommandParser;
-import task.TaskManager;
-import utils.Ui;
+import storage.TaskList;
+import storage.TaskStorage;
+import ui.Ui;
+
+import java.time.DateTimeException;
 
 public class YoshikageKira {
     private Ui ui;
-    private TaskManager taskManager;
+    private TaskList taskList;
 
     public YoshikageKira() {
         this.ui = new Ui();
-        this.taskManager = new TaskManager();
+        this.taskList = TaskStorage.loadTasks();
     }
 
     public void run() {
@@ -24,7 +25,8 @@ public class YoshikageKira {
             this.ui.printSeparator();
             try {
                 Command command = CommandParser.parseCommand(input);
-                command.execute(this.ui, this.taskManager);
+                command.execute(this.ui, this.taskList);
+                TaskStorage.saveTasks(this.taskList);
             } catch (ChatbotException e) {
                 System.out.println(e.getMessage());
             } catch (MissingParameterException e) {

@@ -3,9 +3,10 @@ package command;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
 import parser.DateTimeParser;
+import storage.TaskList;
+import storage.TaskStorage;
 import task.Event;
-import task.TaskManager;
-import utils.Ui;
+import ui.Ui;
 
 public class EventCommand extends Command {
     public EventCommand(String fragment) {
@@ -13,7 +14,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskManager taskManager) throws MissingParameterException, MissingFlagException {
+    public void execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
         String fragment = this.getFragment();
         if ("".equals(fragment) || fragment.startsWith("/from")) {
             throw new MissingParameterException("Task name");
@@ -28,8 +29,8 @@ public class EventCommand extends Command {
             throw new MissingFlagException("/to");
         }
         Event task = new Event(event,
-                DateTimeParser.parseDateTime(segments[0], TaskManager.DATE_FORMAT_FILE),
-                DateTimeParser.parseDateTime(segments[1], TaskManager.DATE_FORMAT_FILE));
-        taskManager.addTask(task);
+                DateTimeParser.parseDateTime(segments[0], TaskStorage.DATE_FORMAT),
+                DateTimeParser.parseDateTime(segments[1], TaskStorage.DATE_FORMAT));
+        taskList.addTask(task);
     }
 }

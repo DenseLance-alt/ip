@@ -1,7 +1,7 @@
 package command;
 
-import task.TaskManager;
-import utils.Ui;
+import storage.TaskList;
+import ui.Ui;
 
 public class ClearCommand extends Command {
     public ClearCommand(String fragment) {
@@ -9,7 +9,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskManager taskManager) {
-        taskManager.clearList(true);
+    public void execute(Ui ui, TaskList taskList) {
+        taskList.clearList();
     }
 }

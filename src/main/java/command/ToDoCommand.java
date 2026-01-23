@@ -1,9 +1,9 @@
 package command;
 
 import exception.MissingParameterException;
-import task.TaskManager;
+import storage.TaskList;
 import task.ToDo;
-import utils.Ui;
+import ui.Ui;
 
 public class ToDoCommand extends Command {
     public ToDoCommand(String fragment) {
@@ -11,12 +11,12 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskManager taskManager) throws MissingParameterException {
+    public void execute(Ui ui, TaskList taskList) throws MissingParameterException {
         String fragment = this.getFragment();
         if ("".equals(fragment)) {
             throw new MissingParameterException("Task name");
         }
         ToDo task = new ToDo(fragment);
-        taskManager.addTask(task);
+        taskList.addTask(task);
     }
 }

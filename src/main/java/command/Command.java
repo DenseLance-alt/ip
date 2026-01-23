@@ -3,8 +3,8 @@ package command;
 import exception.ChatbotException;
 import exception.MissingFlagException;
 import exception.MissingParameterException;
-import task.TaskManager;
-import utils.Ui;
+import storage.TaskList;
+import ui.Ui;
 
 public abstract class Command {
     private String fragment;
@@ -17,6 +17,6 @@ public abstract class Command {
         return this.fragment;
     }
 
-    public abstract void execute(Ui ui, TaskManager taskManager)
+    public abstract void execute(Ui ui, TaskList taskList)
             throws ChatbotException, MissingParameterException, MissingFlagException;
 }
