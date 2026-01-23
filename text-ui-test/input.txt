@@ -1,24 +1,23 @@
 list
 todo read book
-deadline return book /by June 6th
-event project meeting /from Aug 6th 2pm /to 4pm
+deadline return book /by 3/12/2019 18:00
+event project meeting /from 2/12/2019 18:00 /to 5/8/2020 1:00
 list
 mark 1
 todo join sports club
 mark 4
 todo borrow book
 list
-deadline return book /by Sunday
-event project meeting /from Mon 2pm /to 4pm
-list
+deadline return book /by 5/12/2019 23:59
 todo
 unmark
 blah
-event project /from /to 4pm
-event project /to 4pm
-event project /from Sat 8am
-event project /from Sat 8am /to
-event /from Sat 8am /to 4pm
+event project /from /to 5/8/2020 1:00
+event project /to 5/8/2020 1:00
+event project /from 2/12/2019 18:00
+event project /from 2/12/2019 18:00 /to
+event /from 2/12/2019 18:00 /to 5/8/2020 1:00
+event project /from 2-12-2019 18:00 /to 5-8-2020 1:00
 mark 10
 unmark 0
 delete read book

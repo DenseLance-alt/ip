@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.DateTimeException;
 
 import command.Command;
 import exception.ChatbotException;
@@ -6,6 +7,7 @@ import exception.MissingFlagException;
 import exception.MissingParameterException;
 import exception.InvalidCommandException;
 import exception.UnknownCommandException;
+import parser.DateTimeParser;
 import task.Deadline;
 import task.Event;
 import task.TaskManager;
@@ -91,7 +93,8 @@ public class YoshikageKira {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingFlagException("/by");
                     }
-                    Deadline task = new Deadline(segments[0], segments[1]);
+                    Deadline task = new Deadline(segments[0],
+                            DateTimeParser.parseDateTime(segments[1], TaskManager.FILE_DATE_FORMAT));
                     taskManager.addTask(task);
                 }
                 case EVENT -> {
@@ -111,7 +114,9 @@ public class YoshikageKira {
                     if (segments.length < 2 || "".equals(segments[1])) {
                         throw new MissingFlagException("/to");
                     }
-                    Event task = new Event(event, segments[0], segments[1]);
+                    Event task = new Event(event,
+                            DateTimeParser.parseDateTime(segments[0], TaskManager.FILE_DATE_FORMAT),
+                            DateTimeParser.parseDateTime(segments[1], TaskManager.FILE_DATE_FORMAT));
                     taskManager.addTask(task);
                 }
                 case DELETE -> {
@@ -136,6 +141,8 @@ public class YoshikageKira {
                 System.out.println("\tINVALID PARAMETER - Task ID is not a number.");
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("\tINVALID PARAMETER - Task ID is not found in list of tasks.");
+            } catch (DateTimeException e) {
+                System.out.println("\tINVALID PARAMETER - Datetime is not in correct format.");
             } finally {
                 System.out.println(separator);
             }

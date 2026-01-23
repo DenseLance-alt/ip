@@ -1,10 +1,12 @@
 package task;
 
 import exception.CorruptedFileException;
+import parser.DateTimeParser;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,13 +15,15 @@ import java.util.Scanner;
 
 public class TaskManager {
     private ArrayList<Task> taskList;
-    private static final Path FILEPATH = Paths.get("./temp/tasks.txt");
+    private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
+    public static final String FILE_DATE_FORMAT = "d/M/yyyy H:mm";
+    public static final String PRINT_DATE_FORMAT = "yyyy-MM-dd ha";
 
     public TaskManager() {
         this.taskList = new ArrayList<>();
         try {
-            if (!Files.exists(FILEPATH)) {
-                Files.createDirectories(FILEPATH.getParent()); // create new directory
+            if (!Files.exists(FILE_PATH)) {
+                Files.createDirectories(FILE_PATH.getParent()); // create new directory
                 this.clearFile(); // create new file
             } else {
                 this.readFile();
@@ -46,7 +50,7 @@ public class TaskManager {
 
     public void clearFile() {
         try {
-            FileWriter f = new FileWriter(FILEPATH.toFile());
+            FileWriter f = new FileWriter(FILE_PATH.toFile());
             f.write("");
             f.close();
         } catch (IOException e) {
@@ -56,13 +60,15 @@ public class TaskManager {
 
     public void readFile() throws CorruptedFileException {
         try {
-            Scanner reader = new Scanner(FILEPATH.toFile());
+            Scanner reader = new Scanner(FILE_PATH.toFile());
             while (reader.hasNext()) {
                 Task task = this.getTaskFromString(reader.nextLine());
                 this.taskList.add(task); // add task quietly
             }
         } catch (FileNotFoundException e) {
             System.err.println("WARNING - Unable to read tasks from file.");
+        } catch (DateTimeException e) {
+            throw new CorruptedFileException();
         }
     }
 
@@ -73,9 +79,12 @@ public class TaskManager {
             if (segments[0].equals("T") && segments.length == 3) {
                 task = new ToDo(segments[2]);
             } else if (segments[0].equals("D") && segments.length == 4) {
-                task = new Deadline(segments[2], segments[3]);
+                task = new Deadline(segments[2],
+                        DateTimeParser.parseDateTime(segments[3], FILE_DATE_FORMAT));
             } else if (segments[0].equals("E") && segments.length == 5) {
-                task = new Event(segments[2], segments[3], segments[4]);
+                task = new Event(segments[2],
+                        DateTimeParser.parseDateTime(segments[3], FILE_DATE_FORMAT),
+                        DateTimeParser.parseDateTime(segments[4], FILE_DATE_FORMAT));
             }
 
             if (task != null) {
@@ -90,7 +99,7 @@ public class TaskManager {
 
     public void updateFile() {
         try {
-            FileWriter f = new FileWriter(FILEPATH.toFile());
+            FileWriter f = new FileWriter(FILE_PATH.toFile());
             for (int i = 0; i < this.taskList.size(); i++) {
                 f.write(this.taskList.get(i).toFormattedString() + System.lineSeparator());
             }
