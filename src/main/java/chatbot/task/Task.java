@@ -31,7 +31,7 @@ public abstract class Task {
     }
 
     /**
-     * Gets name of task.
+     * Returns name of task.
      * @return Name of task.
      */
     public String getName() {

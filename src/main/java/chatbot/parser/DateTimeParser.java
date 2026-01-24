@@ -3,10 +3,13 @@ package chatbot.parser;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-//@@author DenseLance-alt-reused
-//Reused from https://stackoverflow.com/a/22463063
-// with minor modifications
+/**
+ * Parses date and time.
+ */
 public class DateTimeParser {
+    //@@author DenseLance-alt-reused
+    //Reused from https://stackoverflow.com/a/22463063
+    // with minor modifications
     /**
      * Parses date and time.
      * @param string Date and time in format provided.
@@ -27,4 +30,5 @@ public class DateTimeParser {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return dt.format(formatter);
     }
+    //@@author
 }
