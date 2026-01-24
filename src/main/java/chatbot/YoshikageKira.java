@@ -11,15 +11,26 @@ import chatbot.storage.TaskList;
 import chatbot.storage.TaskStorage;
 import chatbot.ui.Ui;
 
+
+/**
+ * Represents the chatbot.
+ * Provides the main logic of the app.
+ */
 public class YoshikageKira {
     private Ui ui;
     private TaskList taskList;
 
+    /**
+     * Initializes the chatbot.
+     */
     public YoshikageKira() {
         this.ui = new Ui();
         this.taskList = TaskStorage.loadTasks();
     }
 
+    /**
+     * Executes program.
+     */
     public void run() {
         this.ui.sayHello();
         while (!ui.isDone()) {
@@ -47,6 +58,10 @@ public class YoshikageKira {
         }
     }
 
+    /**
+     * Provides entry point to run program
+     * @param args Arguments to main.
+     */
     public static void main(String[] args) {
         new YoshikageKira().run();
     }

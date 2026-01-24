@@ -6,10 +6,19 @@ import chatbot.parser.DateTimeParser;
 import chatbot.storage.TaskList;
 import chatbot.storage.TaskStorage;
 
+/**
+ * Represents the event.
+ */
 public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime to;
 
+    /**
+     * Initializes the event.
+     * @param name Name of event.
+     * @param from Starting datetime.
+     * @param to Ending datetime.
+     */
     public Event(String name, LocalDateTime from, LocalDateTime to) {
         super(name);
         this.from = from;

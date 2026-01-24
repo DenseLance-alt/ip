@@ -14,7 +14,16 @@ import chatbot.command.UnmarkCommand;
 import chatbot.exception.ChatbotException;
 import chatbot.exception.InvalidCommandException;
 
+/**
+ * Parses commands.
+ */
 public class CommandParser {
+    /**
+     * Parses commands from user input.
+     * @param input User input.
+     * @return Command to execute.
+     * @throws ChatbotException Exceptions that occur due to invalid or unknown commands.
+     */
     public static Command parseCommand(String input) throws ChatbotException {
         if (input.contains("|")) {
             throw new InvalidCommandException(); // delimiter is reserved for saving to file
