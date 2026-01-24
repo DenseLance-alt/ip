@@ -23,7 +23,7 @@ public class TaskList {
         return !this.taskList.isEmpty();
     }
 
-    public int numTasks() {
+    public int countTasks() {
         return this.taskList.size();
     }
 
@@ -83,7 +83,7 @@ public class TaskList {
         Task task = this.taskList.remove(taskNumber - 1);
         System.out.println("\tNoted. I've removed this chatbot.task:");
         System.out.println("\t  " + task);
-        System.out.println(String.format("\tNow you have %d tasks in the list.", this.numTasks()));
+        System.out.println(String.format("\tNow you have %d tasks in the list.", this.countTasks()));
     }
 
     /**
@@ -94,6 +94,6 @@ public class TaskList {
         this.taskList.add(task);
         System.out.println("\tGot it. I've added this chatbot.task:");
         System.out.println("\t  " + task);
-        System.out.println(String.format("\tNow you have %d tasks in the list.", this.numTasks()));
+        System.out.println(String.format("\tNow you have %d tasks in the list.", this.countTasks()));
     }
 }

@@ -52,7 +52,7 @@ public class TaskStorage {
     public static void saveTasks(TaskList taskList) {
         try {
             FileWriter f = new FileWriter(FILE_PATH.toFile());
-            for (int i = 1; i <= taskList.numTasks(); i++) {
+            for (int i = 1; i <= taskList.countTasks(); i++) {
                 f.write(taskList.getTask(i).toFormattedString() + System.lineSeparator());
             }
             f.close();
