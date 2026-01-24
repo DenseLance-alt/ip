@@ -1,12 +1,5 @@
 package chatbot.storage;
 
-import chatbot.exception.CorruptedFileException;
-import chatbot.parser.DateTimeParser;
-import chatbot.task.Deadline;
-import chatbot.task.Event;
-import chatbot.task.Task;
-import chatbot.task.ToDo;
-
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,9 +10,44 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import chatbot.exception.CorruptedFileException;
+import chatbot.parser.DateTimeParser;
+import chatbot.task.Deadline;
+import chatbot.task.Event;
+import chatbot.task.Task;
+import chatbot.task.ToDo;
+
 public class TaskStorage {
-    private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
     public static final String DATE_FORMAT = "d/M/yyyy H:mm";
+    private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
+    public static TaskList loadTasks() {
+        try {
+            if (!Files.exists(FILE_PATH)) {
+                Files.createDirectories(FILE_PATH.getParent()); // create new directory
+                clearFile(); // create new file
+            } else {
+                return new TaskList(readFile());
+            }
+        } catch (IOException e) {
+            System.err.println("WARNING - Unable to save tasks to file.");
+        } catch (CorruptedFileException e) {
+            System.err.println("WARNING - Save file is corrupted. Resetting save file.");
+            clearFile();
+        }
+        return new TaskList();
+    }
+
+    public static void saveTasks(TaskList taskList) {
+        try {
+            FileWriter f = new FileWriter(FILE_PATH.toFile());
+            for (int i = 1; i <= taskList.numTasks(); i++) {
+                f.write(taskList.getTask(i).toFormattedString() + System.lineSeparator());
+            }
+            f.close();
+        } catch (IOException e) {
+            System.err.println("WARNING - Unable to save tasks to file.");
+        }
+    }
 
     private static void clearFile() {
         try {
@@ -70,34 +98,5 @@ public class TaskStorage {
             }
         }
         throw new CorruptedFileException();
-    }
-
-    public static TaskList loadTasks() {
-        try {
-            if (!Files.exists(FILE_PATH)) {
-                Files.createDirectories(FILE_PATH.getParent()); // create new directory
-                clearFile(); // create new file
-            } else {
-                return new TaskList(readFile());
-            }
-        } catch (IOException e) {
-            System.err.println("WARNING - Unable to save tasks to file.");
-        } catch (CorruptedFileException e) {
-            System.err.println("WARNING - Save file is corrupted. Resetting save file.");
-            clearFile();
-        }
-        return new TaskList();
-    }
-
-    public static void saveTasks(TaskList taskList) {
-        try {
-            FileWriter f = new FileWriter(FILE_PATH.toFile());
-            for (int i = 1; i <= taskList.numTasks(); i++) {
-                f.write(taskList.getTask(i).toFormattedString() + System.lineSeparator());
-            }
-            f.close();
-        } catch (IOException e) {
-            System.err.println("WARNING - Unable to save tasks to file.");
-        }
     }
 }

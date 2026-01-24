@@ -1,10 +1,10 @@
 package chatbot.task;
 
+import java.time.LocalDateTime;
+
 import chatbot.parser.DateTimeParser;
 import chatbot.storage.TaskList;
 import chatbot.storage.TaskStorage;
-
-import java.time.LocalDateTime;
 
 public class Event extends Task {
     private LocalDateTime from;
