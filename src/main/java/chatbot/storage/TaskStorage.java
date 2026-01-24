@@ -17,9 +17,17 @@ import chatbot.task.Event;
 import chatbot.task.Task;
 import chatbot.task.ToDo;
 
+/**
+ * Stores and loads tasks externally.
+ */
 public class TaskStorage {
     public static final String DATE_FORMAT = "d/M/yyyy H:mm";
     private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
+
+    /**
+     * Loads task from file.
+     * @return List of tasks.
+     */
     public static TaskList loadTasks() {
         try {
             if (!Files.exists(FILE_PATH)) {
@@ -37,6 +45,10 @@ public class TaskStorage {
         return new TaskList();
     }
 
+    /**
+     * Saves tasks to file.
+     * @param taskList List of tasks to save.
+     */
     public static void saveTasks(TaskList taskList) {
         try {
             FileWriter f = new FileWriter(FILE_PATH.toFile());

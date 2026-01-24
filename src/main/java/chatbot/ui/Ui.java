@@ -2,6 +2,9 @@ package chatbot.ui;
 
 import java.util.Scanner;
 
+/**
+ * Deals with user interactions.
+ */
 public class Ui {
     // Adapted from the copypasta https://www.reddit.com/r/copypasta/comments/mmaq30/my_name_is_yoshikage_kira/
     private static final String INTRODUCTION = "\tMy name is Yoshikage Kira. I'm 33 years old. My house is in "
@@ -50,31 +53,52 @@ public class Ui {
     private Scanner scanner;
     private boolean isDone;
 
+    /**
+     * Initializes the user interface.
+     */
     public Ui() {
         this.scanner = new Scanner(System.in);
         this.isDone = false;
     }
 
+    /**
+     * Displays greeting to user.
+     */
     public void sayHello() {
         System.out.println(SEPARATOR);
         System.out.println(INTRODUCTION);
         System.out.println(SEPARATOR);
     }
 
+    /**
+     * Displays farewell to user.
+     * Closes scanner and terminates program.
+     */
     public void sayGoodbye() {
         System.out.println(FAREWELL);
         this.scanner.close();
         this.isDone = true;
     }
 
+    /**
+     * Displays separator for readability.
+     */
     public void printSeparator() {
         System.out.println(SEPARATOR);
     }
 
+    /**
+     * Gets input from user.
+     * @return User input.
+     */
     public String getUserInput() {
         return this.scanner.nextLine();
     }
 
+    /**
+     * Checks if program has terminated.
+     * @return Termination status.
+     */
     public boolean isDone() {
         return this.isDone;
     }
