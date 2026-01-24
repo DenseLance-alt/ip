@@ -36,7 +36,7 @@ public class TaskList {
      */
     public void clearList() {
         this.taskList.clear();
-        System.out.println("\tI have cleared your entire chatbot.task list!");
+        System.out.println("\tI have cleared your entire task list!");
     }
 
     /**
@@ -54,13 +54,31 @@ public class TaskList {
     }
 
     /**
+     * Displays the list of tasks that contain the keyword.
+     * @param keyword Keyword to search for.
+     */
+    public void findTasks(String keyword) {
+        if (this.hasTasks()) {
+            System.out.println("\tHere are the matching tasks in your list:");
+            for (int i = 0; i < this.taskList.size(); i++) {
+                Task task = this.taskList.get(i);
+                if (task.getName().contains(keyword)) {
+                    System.out.println(String.format("\t%d.%s", i + 1, task));
+                }
+            }
+        } else {
+            System.out.println("\tThere are no matching tasks!");
+        }
+    }
+
+    /**
      * Marks task as complete.
      * @param taskNumber Task to mark.
      */
     public void markTask(int taskNumber) {
         Task task = this.taskList.get(taskNumber - 1);
         task.markTask();
-        System.out.println("\tNice! I've marked this chatbot.task as done:");
+        System.out.println("\tNice! I've marked this task as done:");
         System.out.println("\t  " + task);
     }
 
@@ -71,7 +89,7 @@ public class TaskList {
     public void unmarkTask(int taskNumber) {
         Task task = this.taskList.get(taskNumber - 1);
         task.unmarkTask();
-        System.out.println("\tOK, I've marked this chatbot.task as not done yet:");
+        System.out.println("\tOK, I've marked this task as not done yet:");
         System.out.println("\t  " + task);
     }
 
@@ -81,7 +99,7 @@ public class TaskList {
      */
     public void removeTask(int taskNumber) {
         Task task = this.taskList.remove(taskNumber - 1);
-        System.out.println("\tNoted. I've removed this chatbot.task:");
+        System.out.println("\tNoted. I've removed this task:");
         System.out.println("\t  " + task);
         System.out.println(String.format("\tNow you have %d tasks in the list.", this.countTasks()));
     }
@@ -92,7 +110,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         this.taskList.add(task);
-        System.out.println("\tGot it. I've added this chatbot.task:");
+        System.out.println("\tGot it. I've added this task:");
         System.out.println("\t  " + task);
         System.out.println(String.format("\tNow you have %d tasks in the list.", this.countTasks()));
     }

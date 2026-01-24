@@ -31,6 +31,14 @@ public abstract class Task {
     }
 
     /**
+     * Gets name of task.
+     * @return Name of task.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
      * Returns completion status.
      * @return Completion status.
      */
