@@ -24,41 +24,41 @@
 	You have no tasks!
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this chatbot.task:
+	Got it. I've added this task:
 	  [T][ ] read book
 	Now you have 1 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this chatbot.task:
+	Got it. I've added this task:
 	  [D][ ] return book (by: 2019-12-03 6pm)
 	Now you have 2 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this chatbot.task:
-	  [E][ ] project meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
+	Got it. I've added this task:
+	  [E][ ] meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
 	Now you have 3 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	Here are the tasks in your list:
 	1.[T][ ] read book
 	2.[D][ ] return book (by: 2019-12-03 6pm)
-	3.[E][ ] project meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
+	3.[E][ ] meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
 	____________________________________________________________
 	____________________________________________________________
-	Nice! I've marked this chatbot.task as done:
+	Nice! I've marked this task as done:
 	  [T][X] read book
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this chatbot.task:
+	Got it. I've added this task:
 	  [T][ ] join sports club
 	Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Nice! I've marked this chatbot.task as done:
+	Nice! I've marked this task as done:
 	  [T][X] join sports club
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this chatbot.task:
+	Got it. I've added this task:
 	  [T][ ] borrow book
 	Now you have 5 tasks in the list.
 	____________________________________________________________
@@ -66,12 +66,12 @@
 	Here are the tasks in your list:
 	1.[T][X] read book
 	2.[D][ ] return book (by: 2019-12-03 6pm)
-	3.[E][ ] project meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
+	3.[E][ ] meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
 	4.[T][X] join sports club
 	5.[T][ ] borrow book
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this chatbot.task:
+	Got it. I've added this task:
 	  [D][ ] return book (by: 2019-12-05 11pm)
 	Now you have 6 tasks in the list.
 	____________________________________________________________
@@ -116,23 +116,22 @@
 	INVALID PARAMETER - Task ID is not a number.
 	____________________________________________________________
 	____________________________________________________________
-	Noted. I've removed this chatbot.task:
-	  [E][ ] project meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
+	Noted. I've removed this task:
+	  [E][ ] meeting (from: 2019-12-02 6pm to: 2020-08-05 1am)
 	Now you have 5 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	INVALID PARAMETER - Task ID is not found in list of tasks.
 	____________________________________________________________
 	____________________________________________________________
-	Here are the tasks in your list:
+	Here are the matching tasks in your list:
 	1.[T][X] read book
 	2.[D][ ] return book (by: 2019-12-03 6pm)
-	3.[T][X] join sports club
 	4.[T][ ] borrow book
 	5.[D][ ] return book (by: 2019-12-05 11pm)
 	____________________________________________________________
 	____________________________________________________________
-	I have cleared your entire chatbot.task list!
+	I have cleared your entire task list!
 	____________________________________________________________
 	____________________________________________________________
 	No... No, No, No! Where are they taking me!? 

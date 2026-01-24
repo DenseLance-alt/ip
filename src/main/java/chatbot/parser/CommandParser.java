@@ -6,6 +6,7 @@ import chatbot.command.Command;
 import chatbot.command.DeadlineCommand;
 import chatbot.command.DeleteCommand;
 import chatbot.command.EventCommand;
+import chatbot.command.FindCommand;
 import chatbot.command.ListCommand;
 import chatbot.command.MarkCommand;
 import chatbot.command.ToDoCommand;
@@ -27,6 +28,7 @@ public class CommandParser {
         case "BYE" -> new ByeCommand(fragment);
         case "CLEAR" -> new ClearCommand(fragment);
         case "LIST" -> new ListCommand(fragment);
+        case "FIND" -> new FindCommand(fragment);
         case "MARK" -> new MarkCommand(fragment);
         case "UNMARK" -> new UnmarkCommand(fragment);
         case "TODO" -> new ToDoCommand(fragment);

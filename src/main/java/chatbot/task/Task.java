@@ -17,6 +17,14 @@ public abstract class Task {
         this.completed = false;
     }
 
+    /**
+     * Gets name of task.
+     * @return Name of task.
+     */
+    public String getName() {
+        return this.name;
+    }
+
     public String getStatusIcon() {
         return this.completed ? "X" : " "; // mark completed tasks with "X"
     }
