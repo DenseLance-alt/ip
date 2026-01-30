@@ -30,12 +30,14 @@ public abstract class Command {
 
     /**
      * Executes user command.
-     * @param ui User interface.
+     *
+     * @param ui       User interface.
      * @param taskList List of tasks.
-     * @throws ChatbotException Exceptions that occur due to invalid or unknown commands.
+     * @return Notification to user about outcome.
+     * @throws ChatbotException          Exceptions that occur due to invalid or unknown commands.
      * @throws MissingParameterException Exceptions that occur due to missing parameters.
-     * @throws MissingFlagException Exceptions that occur due to missing flags.
+     * @throws MissingFlagException      Exceptions that occur due to missing flags.
      */
-    public abstract void execute(Ui ui, TaskList taskList)
+    public abstract String execute(Ui ui, TaskList taskList)
             throws ChatbotException, MissingParameterException, MissingFlagException;
 }

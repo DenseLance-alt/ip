@@ -17,7 +17,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
+    public String execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
         String fragment = getFragment();
         if ("".equals(fragment) || fragment.startsWith("/by")) {
             throw new MissingParameterException("Task name");
@@ -28,6 +28,6 @@ public class DeadlineCommand extends Command {
         }
         Deadline task = new Deadline(segments[0],
                 DateTimeParser.parseDateTime(segments[1], TaskStorage.DATE_FORMAT));
-        taskList.addTask(task);
+        return taskList.addTask(task);
     }
 }

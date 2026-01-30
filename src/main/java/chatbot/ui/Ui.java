@@ -63,21 +63,21 @@ public class Ui {
 
     /**
      * Displays greeting to user.
+     * @return Chatbot introduction message.
      */
-    public void sayHello() {
-        System.out.println(SEPARATOR);
-        System.out.println(INTRODUCTION);
-        System.out.println(SEPARATOR);
+    public String sayHello() {
+        return INTRODUCTION;
     }
 
     /**
      * Displays farewell to user.
      * Closes scanner and terminates program.
+     * @return Chatbot farewell message.
      */
-    public void sayGoodbye() {
-        System.out.println(FAREWELL);
+    public String sayGoodbye() {
         scanner.close();
         isDone = true;
+        return FAREWELL;
     }
 
     /**

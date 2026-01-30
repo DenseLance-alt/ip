@@ -33,85 +33,100 @@ public class TaskList {
 
     /**
      * Clears the task list.
+     * @return Notification to user about outcome.
      */
-    public void clearList() {
+    public String clearList() {
         taskList.clear();
-        System.out.println("\tI have cleared your entire task list!");
+        return "\tI have cleared your entire task list!";
     }
 
     /**
      * Displays the list of tasks.
+     * @return Notification to user about outcome.
      */
-    public void listTasks() {
+    public String listTasks() {
+        StringBuilder response = new StringBuilder();
         if (hasTasks()) {
-            System.out.println("\tHere are the tasks in your list:");
+            response.append("\tHere are the tasks in your list:");
             for (int i = 0; i < taskList.size(); i++) {
-                System.out.println(String.format("\t%d.%s", i + 1, taskList.get(i)));
+                response.append(String.format("\n\t%d.%s", i + 1, taskList.get(i)));
             }
         } else {
-            System.out.println("\tYou have no tasks!");
+            response.append("\tYou have no tasks!");
         }
+        return response.toString();
     }
 
     /**
      * Displays the list of tasks that contain the keyword.
      * @param keyword Keyword to search for.
+     * @return Notification to user about outcome.
      */
-    public void findTasks(String keyword) {
+    public String findTasks(String keyword) {
+        StringBuilder response = new StringBuilder();
         if (hasTasks()) {
-            System.out.println("\tHere are the matching tasks in your list:");
+            response.append("\tHere are the matching tasks in your list:");
             for (int i = 0; i < taskList.size(); i++) {
                 Task task = taskList.get(i);
                 if (task.getName().contains(keyword)) {
-                    System.out.println(String.format("\t%d.%s", i + 1, task));
+                    response.append(String.format("\n\t%d.%s", i + 1, task));
                 }
             }
         } else {
-            System.out.println("\tThere are no matching tasks!");
+            response.append("\tThere are no matching tasks!");
         }
+        return response.toString();
     }
 
     /**
      * Marks task as complete.
      * @param taskNumber Task to mark.
+     * @return Notification to user about outcome.
      */
-    public void markTask(int taskNumber) {
+    public String markTask(int taskNumber) {
         Task task = taskList.get(taskNumber - 1);
         task.markTask();
-        System.out.println("\tNice! I've marked this task as done:");
-        System.out.println("\t  " + task);
+        return "\tNice! I've marked this task as done:"
+                + "\n\t  "
+                + task;
     }
 
     /**
      * Marks task as incomplete.
      * @param taskNumber Task to unmark.
+     * @return Notification to user about outcome.
      */
-    public void unmarkTask(int taskNumber) {
+    public String unmarkTask(int taskNumber) {
         Task task = taskList.get(taskNumber - 1);
         task.unmarkTask();
-        System.out.println("\tOK, I've marked this task as not done yet:");
-        System.out.println("\t  " + task);
+        return "\tOK, I've marked this task as not done yet:"
+                + "\n\t  "
+                + task;
     }
 
     /**
      * Removes task from task list.
      * @param taskNumber Task to remove.
+     * @return Notification to user about outcome.
      */
-    public void removeTask(int taskNumber) {
+    public String removeTask(int taskNumber) {
         Task task = taskList.remove(taskNumber - 1);
-        System.out.println("\tNoted. I've removed this task:");
-        System.out.println("\t  " + task);
-        System.out.println(String.format("\tNow you have %d tasks in the list.", countTasks()));
+        return "\tNoted. I've removed this task:"
+                +"\n\t  "
+                + task
+                + String.format("\n\tNow you have %d tasks in the list.", countTasks());
     }
 
     /**
      * Adds task to task list.
      * @param task Task to add.
+     * @return Notification to user about outcome.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         taskList.add(task);
-        System.out.println("\tGot it. I've added this task:");
-        System.out.println("\t  " + task);
-        System.out.println(String.format("\tNow you have %d tasks in the list.", countTasks()));
+        return "\tGot it. I've added this task:"
+                + "\n\t  "
+                + task
+                + String.format("\n\tNow you have %d tasks in the list.", countTasks());
     }
 }
