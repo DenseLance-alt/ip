@@ -32,7 +32,7 @@ public class Deadline extends Task {
         return String.format(
                 "%s | %s",
                 super.toFormattedString(),
-                DateTimeParser.formatDateTime(this.by, TaskStorage.DATE_FORMAT));
+                DateTimeParser.formatDateTime(by, TaskStorage.DATE_FORMAT));
     }
 
     @Override
@@ -40,6 +40,6 @@ public class Deadline extends Task {
         return String.format(
                 "%s (by: %s)",
                 super.toString(),
-                DateTimeParser.formatDateTime(this.by, TaskList.DATE_FORMAT));
+                DateTimeParser.formatDateTime(by, TaskList.DATE_FORMAT));
     }
 }

@@ -24,22 +24,22 @@ public class YoshikageKira {
      * Initializes the chatbot.
      */
     public YoshikageKira() {
-        this.ui = new Ui();
-        this.taskList = TaskStorage.loadTasks();
+        ui = new Ui();
+        taskList = TaskStorage.loadTasks();
     }
 
     /**
      * Executes program.
      */
     public void run() {
-        this.ui.sayHello();
+        ui.sayHello();
         while (!ui.isDone()) {
-            String input = this.ui.getUserInput();
-            this.ui.printSeparator();
+            String input = ui.getUserInput();
+            ui.printSeparator();
             try {
                 Command command = CommandParser.parseCommand(input);
-                command.execute(this.ui, this.taskList);
-                TaskStorage.saveTasks(this.taskList);
+                command.execute(ui, taskList);
+                TaskStorage.saveTasks(taskList);
             } catch (ChatbotException e) {
                 System.out.println(e.getMessage());
             } catch (MissingParameterException e) {
@@ -53,7 +53,7 @@ public class YoshikageKira {
             } catch (DateTimeException e) {
                 System.out.println("\tINVALID PARAMETER - Datetime is not in correct format.");
             } finally {
-                this.ui.printSeparator();
+                ui.printSeparator();
             }
         }
     }

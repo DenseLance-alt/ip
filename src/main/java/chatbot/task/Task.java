@@ -13,21 +13,21 @@ public abstract class Task {
      */
     public Task(String name) {
         this.name = name;
-        this.completed = false;
+        completed = false;
     }
 
     /**
      * Marks task as complete.
      */
     public void markTask() {
-        this.completed = true;
+        completed = true;
     }
 
     /**
      * Marks task as incomplete.
      */
     public void unmarkTask() {
-        this.completed = false;
+        completed = false;
     }
 
     /**
@@ -35,7 +35,7 @@ public abstract class Task {
      * @return Name of task.
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -43,7 +43,7 @@ public abstract class Task {
      * @return Completion status.
      */
     public String getStatusIcon() {
-        return this.completed ? "X" : " "; // mark completed tasks with "X"
+        return completed ? "X" : " "; // mark completed tasks with "X"
     }
 
     /**
@@ -59,9 +59,9 @@ public abstract class Task {
     public String toFormattedString() {
         return String.format(
                 "%s | %s | %s",
-                this.getCategory(),
-                this.getStatusIcon(),
-                this.name);
+                getCategory(),
+                getStatusIcon(),
+                name);
     }
 
     /**
@@ -72,8 +72,8 @@ public abstract class Task {
     public String toString() {
         return String.format(
                 "[%s][%s] %s",
-                this.getCategory(),
-                this.getStatusIcon(),
-                this.name);
+                getCategory(),
+                getStatusIcon(),
+                name);
     }
 }

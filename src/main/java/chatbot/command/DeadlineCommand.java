@@ -15,7 +15,7 @@ public class DeadlineCommand extends Command {
 
     @Override
     public void execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
-        String fragment = this.getFragment();
+        String fragment = getFragment();
         if ("".equals(fragment) || fragment.startsWith("/by")) {
             throw new MissingParameterException("Task name");
         }

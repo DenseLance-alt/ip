@@ -57,8 +57,8 @@ public class Ui {
      * Initializes the user interface.
      */
     public Ui() {
-        this.scanner = new Scanner(System.in);
-        this.isDone = false;
+        scanner = new Scanner(System.in);
+        isDone = false;
     }
 
     /**
@@ -76,8 +76,8 @@ public class Ui {
      */
     public void sayGoodbye() {
         System.out.println(FAREWELL);
-        this.scanner.close();
-        this.isDone = true;
+        scanner.close();
+        isDone = true;
     }
 
     /**
@@ -92,7 +92,7 @@ public class Ui {
      * @return User input.
      */
     public String getUserInput() {
-        return this.scanner.nextLine();
+        return scanner.nextLine();
     }
 
     /**
@@ -100,6 +100,6 @@ public class Ui {
      * @return Termination status.
      */
     public boolean isDone() {
-        return this.isDone;
+        return isDone;
     }
 }

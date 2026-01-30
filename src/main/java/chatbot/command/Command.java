@@ -25,7 +25,7 @@ public abstract class Command {
      * @return User input without the main command.
      */
     public String getFragment() {
-        return this.fragment;
+        return fragment;
     }
 
     /**

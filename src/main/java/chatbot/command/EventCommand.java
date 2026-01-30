@@ -15,7 +15,7 @@ public class EventCommand extends Command {
 
     @Override
     public void execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
-        String fragment = this.getFragment();
+        String fragment = getFragment();
         if ("".equals(fragment) || fragment.startsWith("/from")) {
             throw new MissingParameterException("Task name");
         }

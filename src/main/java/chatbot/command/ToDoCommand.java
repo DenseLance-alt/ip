@@ -12,7 +12,7 @@ public class ToDoCommand extends Command {
 
     @Override
     public void execute(Ui ui, TaskList taskList) throws MissingParameterException {
-        String fragment = this.getFragment();
+        String fragment = getFragment();
         if ("".equals(fragment)) {
             throw new MissingParameterException("Task name");
         }
