@@ -47,8 +47,14 @@ test {
     }
 }
 
+/*
 application {
     mainClass.set("chatbot.YoshikageKira")
+}
+*/
+
+application {
+    mainClass.set("chatbot.app.Launcher")
 }
 
 shadowJar {
