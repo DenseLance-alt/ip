@@ -29,6 +29,14 @@ public class YoshikageKira {
     }
 
     /**
+     * Gets hello response from chatbot.
+     * @return Hello response.
+     */
+    public String getHello() {
+        return ui.sayHello();
+    }
+
+    /**
      * Gets response from chatbot based on user input.
      * @param input
      * @return Response from chatbot.

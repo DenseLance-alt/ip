@@ -41,10 +41,7 @@ public class Ui {
             + System.lineSeparator()
             + "\thappiness. Although, if I were to fight I wouldn't lose to "
             + System.lineSeparator()
-            + "\tanyone."
-            + System.lineSeparator()
-            + System.lineSeparator()
-            + "\tWhat can I do for you?";
+            + "\tanyone. ";
     private static final String FAREWELL = "\tNo... No, No, No! Where are they taking me!? "
             + System.lineSeparator()
             + "\tThey're dragging me away! Nooo!";
