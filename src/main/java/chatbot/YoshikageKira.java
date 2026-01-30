@@ -59,7 +59,7 @@ public class YoshikageKira {
     }
 
     /**
-     * Provides entry point to run program
+     * Provides entry point to run program.
      * @param args Arguments to main.
      */
     public static void main(String[] args) {
