@@ -4,6 +4,9 @@ import chatbot.exception.MissingParameterException;
 import chatbot.storage.TaskList;
 import chatbot.ui.Ui;
 
+/**
+ * Provides a way to execute UNMARK commands.
+ */
 public class UnmarkCommand extends Command {
     public UnmarkCommand(String fragment) {
         super(fragment);

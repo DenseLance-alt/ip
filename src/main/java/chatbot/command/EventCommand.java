@@ -8,6 +8,9 @@ import chatbot.storage.TaskStorage;
 import chatbot.task.Event;
 import chatbot.ui.Ui;
 
+/**
+ * Provides a way to execute EVENT commands.
+ */
 public class EventCommand extends Command {
     public EventCommand(String fragment) {
         super(fragment);

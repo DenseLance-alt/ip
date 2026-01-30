@@ -1,5 +1,8 @@
 package chatbot.exception;
 
+/**
+ * Exception that occurs due to a corrupted save file.
+ */
 public class CorruptedFileException extends Exception {
     public CorruptedFileException() {
         super();

@@ -1,5 +1,8 @@
 package chatbot.exception;
 
+/**
+ * Exception that occurs due to a missing flag or its positional argument in the command.
+ */
 public class MissingFlagException extends Exception {
     public MissingFlagException(String message) {
         super(message);

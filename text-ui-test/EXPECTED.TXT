@@ -82,7 +82,7 @@
 	MISSING PARAMETER - Task ID must be included in the input.
 	____________________________________________________________
 	____________________________________________________________
-	INVALID COMMAND - Unknown chatbot.command provided.
+	INVALID COMMAND - Unknown command provided.
 	____________________________________________________________
 	____________________________________________________________
 	MISSING FLAG - '/from' and its positional argument must be 

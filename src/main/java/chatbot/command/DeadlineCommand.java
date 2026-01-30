@@ -8,6 +8,9 @@ import chatbot.storage.TaskStorage;
 import chatbot.task.Deadline;
 import chatbot.ui.Ui;
 
+/**
+ * Provides a way to execute DEADLINE commands.
+ */
 public class DeadlineCommand extends Command {
     public DeadlineCommand(String fragment) {
         super(fragment);

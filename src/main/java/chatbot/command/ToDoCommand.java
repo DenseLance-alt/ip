@@ -5,6 +5,9 @@ import chatbot.storage.TaskList;
 import chatbot.task.ToDo;
 import chatbot.ui.Ui;
 
+/**
+ * Provides a way to execute TODO commands.
+ */
 public class ToDoCommand extends Command {
     public ToDoCommand(String fragment) {
         super(fragment);
