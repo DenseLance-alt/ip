@@ -25,6 +25,7 @@ public class Gui extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Yoshikage Kira Chatbot");
 
             // set window size limits
             stage.setMinHeight(220);
