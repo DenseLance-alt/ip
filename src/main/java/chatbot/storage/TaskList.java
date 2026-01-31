@@ -112,7 +112,7 @@ public class TaskList {
     public String removeTask(int taskNumber) {
         Task task = taskList.remove(taskNumber - 1);
         return "\tNoted. I've removed this task:"
-                +"\n\t  "
+                + "\n\t  "
                 + task
                 + String.format("\n\tNow you have %d tasks in the list.", countTasks());
     }
