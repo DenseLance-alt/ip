@@ -38,10 +38,10 @@ public class DialogBox extends HBox {
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        this.setAlignment(Pos.TOP_LEFT);
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        setAlignment(Pos.TOP_LEFT);
+        ObservableList<Node> tmp = FXCollections.observableArrayList(getChildren());
         FXCollections.reverse(tmp);
-        this.getChildren().setAll(tmp);
+        getChildren().setAll(tmp);
         dialog.getStyleClass().add("reply-label"); // link to css to flip reply bubble
     }
 
@@ -49,7 +49,7 @@ public class DialogBox extends HBox {
         return new DialogBox(s, i);
     }
 
-    public static DialogBox getDukeDialog(String s, Image i) {
+    public static DialogBox getChatbotDialog(String s, Image i) {
         var db = new DialogBox(s, i);
         db.flip();
         return db;
