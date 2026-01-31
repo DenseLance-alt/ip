@@ -81,6 +81,7 @@ public class MainWindow extends AnchorPane {
             if (stage != null) {
                 timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> stage.close()));
             }
+            //@@author
         }
 
         dialogContainer.getChildren().addAll(
