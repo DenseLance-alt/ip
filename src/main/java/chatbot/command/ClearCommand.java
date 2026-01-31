@@ -12,7 +12,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskList taskList) {
-        taskList.clearList();
+    public String execute(Ui ui, TaskList taskList) {
+        return taskList.clearList();
     }
 }

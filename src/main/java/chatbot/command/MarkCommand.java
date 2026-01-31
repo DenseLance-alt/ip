@@ -13,12 +13,12 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskList taskList) throws MissingParameterException {
+    public String execute(Ui ui, TaskList taskList) throws MissingParameterException {
         String fragment = getFragment();
         if ("".equals(fragment)) {
             throw new MissingParameterException("Task ID");
         }
         int taskNumber = Integer.parseInt(fragment);
-        taskList.markTask(taskNumber);
+        return taskList.markTask(taskNumber);
     }
 }

@@ -7,6 +7,9 @@ import java.util.Scanner;
  */
 public class Ui {
     // Adapted from the copypasta https://www.reddit.com/r/copypasta/comments/mmaq30/my_name_is_yoshikage_kira/
+    public static final String FAREWELL = "\tNo... No, No, No! Where are they taking me!? "
+            + System.lineSeparator()
+            + "\tThey're dragging me away! Nooo!";
     private static final String INTRODUCTION = "\tMy name is Yoshikage Kira. I'm 33 years old. My house is in "
             + System.lineSeparator()
             + "\tthe northeast section of Morioh, where all the villas are, "
@@ -41,13 +44,7 @@ public class Ui {
             + System.lineSeparator()
             + "\thappiness. Although, if I were to fight I wouldn't lose to "
             + System.lineSeparator()
-            + "\tanyone."
-            + System.lineSeparator()
-            + System.lineSeparator()
-            + "\tWhat can I do for you?";
-    private static final String FAREWELL = "\tNo... No, No, No! Where are they taking me!? "
-            + System.lineSeparator()
-            + "\tThey're dragging me away! Nooo!";
+            + "\tanyone. ";
     private static final String SEPARATOR = "\t____________________________________________________________";
 
     private Scanner scanner;
@@ -63,21 +60,21 @@ public class Ui {
 
     /**
      * Displays greeting to user.
+     * @return Chatbot introduction message.
      */
-    public void sayHello() {
-        System.out.println(SEPARATOR);
-        System.out.println(INTRODUCTION);
-        System.out.println(SEPARATOR);
+    public String sayHello() {
+        return INTRODUCTION;
     }
 
     /**
      * Displays farewell to user.
      * Closes scanner and terminates program.
+     * @return Chatbot farewell message.
      */
-    public void sayGoodbye() {
-        System.out.println(FAREWELL);
+    public String sayGoodbye() {
         scanner.close();
         isDone = true;
+        return FAREWELL;
     }
 
     /**

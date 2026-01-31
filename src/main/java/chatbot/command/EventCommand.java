@@ -17,7 +17,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
+    public String execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
         String fragment = getFragment();
         if ("".equals(fragment) || fragment.startsWith("/from")) {
             throw new MissingParameterException("Task name");
@@ -34,6 +34,6 @@ public class EventCommand extends Command {
         Event task = new Event(event,
                 DateTimeParser.parseDateTime(segments[0], TaskStorage.DATE_FORMAT),
                 DateTimeParser.parseDateTime(segments[1], TaskStorage.DATE_FORMAT));
-        taskList.addTask(task);
+        return taskList.addTask(task);
     }
 }

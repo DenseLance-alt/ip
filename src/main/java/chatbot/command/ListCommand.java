@@ -12,7 +12,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskList taskList) {
-        taskList.listTasks();
+    public String execute(Ui ui, TaskList taskList) {
+        return taskList.listTasks();
     }
 }
