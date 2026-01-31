@@ -78,7 +78,7 @@ public class YoshikageKira {
      * Provides entry point to run program via CLI.
      * @param args Arguments to main.
      */
-    public static void main(String[] args) {
+    public static void main(String... args) {
         new YoshikageKira().run();
     }
 }
