@@ -68,7 +68,7 @@ public class TaskList {
             response.append("\tHere are the matching tasks in your list:");
             for (int i = 0; i < taskList.size(); i++) {
                 Task task = taskList.get(i);
-                if (task.getName().contains(keyword)) {
+                if (task.getName().toLowerCase().contains(keyword.toLowerCase())) {
                     response.append(String.format("\n\t%d.%s", i + 1, task));
                 }
             }
