@@ -1,0 +1,46 @@
+.label {
+    -fx-background-color: linear-gradient(to bottom right, #00ffbf, #00ddff);
+    -fx-border-color: #d55e00 #009e73 #cc79a7 #0072b2;
+    -fx-border-width: 2px;
+    /* The values are set in a clockwise manner starting from the top left corner */
+    -fx-background-radius: 1em 1em 0 1em;
+    -fx-border-radius: 1em 1em 0 1em;
+    /* Font color will turn white if the brightness of background color is between 0%-49%,
+       and it will turn black if the brightness level is between 50%-100%. */
+    background:derive(blue, 1.5); /* change color of background */
+    -fx-background-color: background;
+    -fx-text-fill: ladder(background, white 49%, black 50%);
+}
+
+/* Flipping reply text bubble */
+.reply-label {
+    -fx-background-radius: 1em 1em 1em 0;
+    -fx-border-radius: 1em 1em 1em 0;
+}
+
+/* Style classes for Add Task, Mark Task, Delete Task
+   See: https://se-education.org/guides/tutorials/javaFxPart5.html#enhancements */
+.add-label {
+    -fx-background-color: yellow;
+}
+
+.marked-label {
+    -fx-background-color: palegreen;
+}
+
+.delete-label {
+    -fx-background-color: lightpink;
+}
+
+#displayPicture {
+    /* Shadow effect on image. */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
+    /* -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5); */
+
+    /* Change size of image. */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+
+    /* Rotate image clockwise by degrees. */
+    -fx-rotate: 0;
+}
