@@ -5,7 +5,7 @@ package chatbot.task;
  */
 public abstract class Task {
     private String name;
-    private boolean completed;
+    private boolean isCompleted;
 
     /**
      * Initializes task.
@@ -13,21 +13,21 @@ public abstract class Task {
      */
     public Task(String name) {
         this.name = name;
-        completed = false;
+        isCompleted = false;
     }
 
     /**
      * Marks task as complete.
      */
     public void markTask() {
-        completed = true;
+        isCompleted = true;
     }
 
     /**
      * Marks task as incomplete.
      */
     public void unmarkTask() {
-        completed = false;
+        isCompleted = false;
     }
 
     /**
@@ -43,7 +43,7 @@ public abstract class Task {
      * @return Completion status.
      */
     public String getStatusIcon() {
-        return completed ? "X" : " "; // mark completed tasks with "X"
+        return isCompleted ? "X" : " "; // mark completed tasks with "X"
     }
 
     /**

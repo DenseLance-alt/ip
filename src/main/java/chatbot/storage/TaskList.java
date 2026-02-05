@@ -17,7 +17,7 @@ public class TaskList {
     private static final String LIST_MATCHING_TASK_PREFIX_MESSAGE = "\tHere are the matching tasks in your list:";
     private static final String MARK_TASK_PREFIX_MESSAGE = "\tNice! I've marked this task as done:\n\t  ";
     private static final String UNMARK_TASK_PREFIX_MESSAGE = "\tOK, I've marked this task as not done yet:\n\t  ";
-    private static final String REMOVE_TASK_FORMATTED_MESSAGE = "\tNoted. I've removed this task: \n\t  %s\n\tNow you have %d tasks in the list.";
+    private static final String REMOVE_TASK_FORMATTED_MESSAGE = "\tNoted. I've removed this task:\n\t  %s\n\tNow you have %d tasks in the list.";
     private static final String ADD_TASK_FORMATTED_MESSAGE = "\tGot it. I've added this task:\n\t  %s\n\tNow you have %d tasks in the list.";
 
     private ArrayList<Task> taskList;

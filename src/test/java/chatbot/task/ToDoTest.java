@@ -12,7 +12,7 @@ public class ToDoTest {
     }
 
     @Test
-    void testToFormattedString() {
+    void testToStorageEntryString() {
         ToDo result = new ToDo("task");
         assertEquals("T |   | task", result.toStorageEntryString());
     }
