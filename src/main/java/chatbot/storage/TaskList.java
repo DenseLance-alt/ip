@@ -9,6 +9,17 @@ import chatbot.task.Task;
  */
 public class TaskList {
     public static final String DATE_FORMAT = "yyyy-MM-dd ha";
+
+    private static final String LIST_TASK_PREFIX_MESSAGE = "\tHere are the tasks in your list:";
+    private static final String NO_TASK_MESSAGE = "\tYou have no tasks!";
+    private static final String NO_MATCHING_TASK_MESSAGE = "\tThere are no matching tasks!";
+    private static final String CLEAR_LIST_MESSAGE = "\tI have cleared your entire task list!";
+    private static final String LIST_MATCHING_TASK_PREFIX_MESSAGE = "\tHere are the matching tasks in your list:";
+    private static final String MARK_TASK_PREFIX_MESSAGE = "\tNice! I've marked this task as done:\n\t  ";
+    private static final String UNMARK_TASK_PREFIX_MESSAGE = "\tOK, I've marked this task as not done yet:\n\t  ";
+    private static final String REMOVE_TASK_FORMATTED_MESSAGE = "\tNoted. I've removed this task: \n\t  %s\n\tNow you have %d tasks in the list.";
+    private static final String ADD_TASK_FORMATTED_MESSAGE = "\tGot it. I've added this task:\n\t  %s\n\tNow you have %d tasks in the list.";
+
     private ArrayList<Task> taskList;
 
     public TaskList() {
@@ -77,7 +88,7 @@ public class TaskList {
      */
     public String clearList() {
         taskList.clear();
-        return "\tI have cleared your entire task list!";
+        return CLEAR_LIST_MESSAGE;
     }
 
     /**
@@ -86,8 +97,8 @@ public class TaskList {
      */
     public String listTasks() {
         return hasTasks()
-                ? "\tHere are the tasks in your list:" + formatTaskListAsString(taskList)
-                : "\tYou have no tasks!";
+                ? LIST_TASK_PREFIX_MESSAGE + formatTaskListAsString(taskList)
+                : NO_TASK_MESSAGE;
     }
 
     /**
@@ -97,10 +108,11 @@ public class TaskList {
      */
     public String findTasks(String keyword) {
         String lowerCaseKeyword = keyword.toLowerCase();
-        return hasTasks()
-                ? "\tHere are the matching tasks in your list:"
-                + formatTaskListAsString(filterTaskList(lowerCaseKeyword))
-                : "\tThere are no matching tasks!";
+        ArrayList<Task> filteredTaskList = filterTaskList(lowerCaseKeyword);
+        return filteredTaskList.isEmpty()
+                ? NO_MATCHING_TASK_MESSAGE
+                : LIST_MATCHING_TASK_PREFIX_MESSAGE
+                + formatTaskListAsString(filteredTaskList);
     }
 
     /**
@@ -109,11 +121,9 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String markTask(int taskNumber) {
-        Task task = taskList.get(taskNumber - 1);
+        Task task = getTask(taskNumber);
         task.markTask();
-        return "\tNice! I've marked this task as done:"
-                + "\n\t  "
-                + task;
+        return MARK_TASK_PREFIX_MESSAGE + task;
     }
 
     /**
@@ -122,11 +132,9 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String unmarkTask(int taskNumber) {
-        Task task = taskList.get(taskNumber - 1);
+        Task task = getTask(taskNumber);
         task.unmarkTask();
-        return "\tOK, I've marked this task as not done yet:"
-                + "\n\t  "
-                + task;
+        return UNMARK_TASK_PREFIX_MESSAGE + task;
     }
 
     /**
@@ -136,10 +144,7 @@ public class TaskList {
      */
     public String removeTask(int taskNumber) {
         Task task = taskList.remove(taskNumber - 1);
-        return "\tNoted. I've removed this task:"
-                + "\n\t  "
-                + task
-                + String.format("\n\tNow you have %d tasks in the list.", countTasks());
+        return String.format(REMOVE_TASK_FORMATTED_MESSAGE, task, countTasks());
     }
 
     /**
@@ -149,9 +154,6 @@ public class TaskList {
      */
     public String addTask(Task task) {
         taskList.add(task);
-        return "\tGot it. I've added this task:"
-                + "\n\t  "
-                + task
-                + String.format("\n\tNow you have %d tasks in the list.", countTasks());
+        return String.format(ADD_TASK_FORMATTED_MESSAGE, task, countTasks());
     }
 }
