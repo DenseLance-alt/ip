@@ -125,8 +125,8 @@
 	Here are the matching tasks in your list:
 	1.[T][X] read book
 	2.[D][ ] return book (by: 2019-12-03 6pm)
-	4.[T][ ] borrow book
-	5.[D][ ] return book (by: 2019-12-05 11pm)
+	3.[T][ ] borrow book
+	4.[D][ ] return book (by: 2019-12-05 11pm)
 	____________________________________________________________
 	____________________________________________________________
 	I have cleared your entire task list!

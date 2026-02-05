@@ -14,7 +14,7 @@ public class ToDoTest {
     @Test
     void testToFormattedString() {
         ToDo result = new ToDo("task");
-        assertEquals("T |   | task", result.toFormattedString());
+        assertEquals("T |   | task", result.toStorageEntryString());
     }
 
     @Test

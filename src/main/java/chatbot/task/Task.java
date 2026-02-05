@@ -56,7 +56,7 @@ public abstract class Task {
      * Returns string to be saved to file.
      * @return String to be saved to file.
      */
-    public String toFormattedString() {
+    public String toStorageEntryString() {
         return String.format(
                 "%s | %s | %s",
                 getCategory(),

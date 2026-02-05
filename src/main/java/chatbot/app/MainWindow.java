@@ -69,7 +69,7 @@ public class MainWindow extends AnchorPane {
         Image chatbotImage = this.chatbotImage;
         Timeline timeline = null;
 
-        if (Ui.FAREWELL.equals(response)) {
+        if (Ui.getFarewell().equals(response)) {
             //@@author DenseLance-alt-reused
             //Reused from https://stackoverflow.com/a/13602324
             // and https://stackoverflow.com/a/49881572

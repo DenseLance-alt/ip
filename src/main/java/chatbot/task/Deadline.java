@@ -28,10 +28,10 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String toFormattedString() {
+    public String toStorageEntryString() {
         return String.format(
                 "%s | %s",
-                super.toFormattedString(),
+                super.toStorageEntryString(),
                 DateTimeParser.formatDateTime(by, TaskStorage.DATE_FORMAT));
     }
 

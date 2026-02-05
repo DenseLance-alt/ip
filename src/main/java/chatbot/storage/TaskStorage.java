@@ -53,7 +53,7 @@ public class TaskStorage {
         try {
             FileWriter f = new FileWriter(FILE_PATH.toFile());
             for (int i = 1; i <= taskList.countTasks(); i++) {
-                f.write(taskList.getTask(i).toFormattedString() + System.lineSeparator());
+                f.write(taskList.getTask(i).toStorageEntryString() + System.lineSeparator());
             }
             f.close();
         } catch (IOException e) {

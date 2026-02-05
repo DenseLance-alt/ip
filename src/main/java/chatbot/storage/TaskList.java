@@ -19,6 +19,46 @@ public class TaskList {
         this.taskList = taskList;
     }
 
+    /**
+     * Converts task into a formatted string for printing.
+     * @param taskList List of tasks to convert.
+     * @return Formatted string containing list of tasks
+     */
+    private static String formatTaskListAsString(ArrayList<Task> taskList) {
+        StringBuilder formattedString = new StringBuilder();
+        for (int i = 0; i < taskList.size(); i++) {
+            formattedString.append(formatTaskAsString(taskList.get(i), i));
+        }
+        return formattedString.toString();
+    }
+
+    /**
+     * Converts task into a formatted string for printing.
+     * @param task Task to convert.
+     * @param index Index of the task in the task list.
+     * @return Formatted string containing a task.
+     */
+    private static String formatTaskAsString(Task task, int index) {
+        return String.format("\n\t%d.%s", index + 1, task);
+    }
+
+    /**
+     * Retrieves all task with a specific keyword.
+     * @param keyword Keyword
+     * @return A list of tasks that contains the keyword.
+     */
+    private ArrayList<Task> filterTaskList(String keyword) {
+        ArrayList<Task> filteredTaskList = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+            String lowerCaseTaskName = task.getName().toLowerCase();
+            if (lowerCaseTaskName.contains(keyword)) {
+                filteredTaskList.add(task);
+            }
+        }
+        return filteredTaskList;
+    }
+
     public boolean hasTasks() {
         return !taskList.isEmpty();
     }
@@ -45,16 +85,9 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String listTasks() {
-        StringBuilder response = new StringBuilder();
-        if (hasTasks()) {
-            response.append("\tHere are the tasks in your list:");
-            for (int i = 0; i < taskList.size(); i++) {
-                response.append(String.format("\n\t%d.%s", i + 1, taskList.get(i)));
-            }
-        } else {
-            response.append("\tYou have no tasks!");
-        }
-        return response.toString();
+        return hasTasks()
+                ? "\tHere are the tasks in your list:" + formatTaskListAsString(taskList)
+                : "\tYou have no tasks!";
     }
 
     /**
@@ -63,19 +96,11 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String findTasks(String keyword) {
-        StringBuilder response = new StringBuilder();
-        if (hasTasks()) {
-            response.append("\tHere are the matching tasks in your list:");
-            for (int i = 0; i < taskList.size(); i++) {
-                Task task = taskList.get(i);
-                if (task.getName().toLowerCase().contains(keyword.toLowerCase())) {
-                    response.append(String.format("\n\t%d.%s", i + 1, task));
-                }
-            }
-        } else {
-            response.append("\tThere are no matching tasks!");
-        }
-        return response.toString();
+        String lowerCaseKeyword = keyword.toLowerCase();
+        return hasTasks()
+                ? "\tHere are the matching tasks in your list:"
+                + formatTaskListAsString(filterTaskList(lowerCaseKeyword))
+                : "\tThere are no matching tasks!";
     }
 
     /**

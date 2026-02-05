@@ -31,10 +31,10 @@ public class Event extends Task {
     }
 
     @Override
-    public String toFormattedString() {
+    public String toStorageEntryString() {
         return String.format(
                 "%s | %s | %s",
-                super.toFormattedString(),
+                super.toStorageEntryString(),
                 DateTimeParser.formatDateTime(from, TaskStorage.DATE_FORMAT),
                 DateTimeParser.formatDateTime(to, TaskStorage.DATE_FORMAT));
     }

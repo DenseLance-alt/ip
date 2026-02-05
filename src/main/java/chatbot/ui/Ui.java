@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
     // Adapted from the copypasta https://www.reddit.com/r/copypasta/comments/mmaq30/my_name_is_yoshikage_kira/
-    public static final String FAREWELL = "\tNo... No, No, No! Where are they taking me!? "
+    private static final String FAREWELL = "\tNo... No, No, No! Where are they taking me!? "
             + System.lineSeparator()
             + "\tThey're dragging me away! Nooo!";
     private static final String INTRODUCTION = "\tMy name is Yoshikage Kira. I'm 33 years old. My house is in "
@@ -74,6 +74,14 @@ public class Ui {
     public String sayGoodbye() {
         scanner.close();
         isDone = true;
+        return FAREWELL;
+    }
+
+    /**
+     * Gets farewell message.
+     * @return Chatbot farewell message.
+     */
+    public static String getFarewell() {
         return FAREWELL;
     }
 
