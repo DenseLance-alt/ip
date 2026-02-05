@@ -10,9 +10,9 @@ public class MissingFlagException extends Exception {
 
     @Override
     public String getMessage() {
-        return String.format("\tMISSING FLAG - '%s' and its positional argument must be "
-                        + System.lineSeparator()
-                        + "\tincluded in the input.",
-                super.getMessage());
+        return String.format(
+                "\tMISSING FLAG - '%s' and its positional argument must be %s\tincluded in the input.",
+                super.getMessage(),
+                System.lineSeparator());
     }
 }

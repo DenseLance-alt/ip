@@ -24,18 +24,23 @@ import chatbot.task.ToDo;
  */
 public class TaskStorage {
     public static final String DATE_FORMAT = "d/M/yyyy H:mm";
+    public static final String STORAGE_ENTRY_DELIMITER = "\\|";
 
     private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
 
     // STRING PROCESSING
-    private static final String STORAGE_ENTRY_SEPARATOR = " \\| ";
+    private static final String STORAGE_ENTRY_SEPARATOR = " " + STORAGE_ENTRY_DELIMITER + " ";
     private static final String TASK_STATUS_ICON = "X";
 
     // WARNINGS
-    private static final String SAVE_FILE_FAILURE_WARNING = "WARNING - Unable to save tasks to file.";
-    private static final String CORRUPTED_FILE_FAILURE_WARNING = "WARNING - Save file is corrupted. Resetting save file.";
-    private static final String RESET_FILE_FAILURE_WARNING = "WARNING - Unable to reset and create new file.";
-    private static final String READ_FILE_FAILURE_WARNING = "WARNING - Unable to read tasks from file.";
+    private static final String SAVE_FILE_FAILURE_WARNING =
+            "WARNING - Unable to save tasks to file.";
+    private static final String CORRUPTED_FILE_FAILURE_WARNING =
+            "WARNING - Save file is corrupted. Resetting save file.";
+    private static final String RESET_FILE_FAILURE_WARNING =
+            "WARNING - Unable to reset and create new file.";
+    private static final String READ_FILE_FAILURE_WARNING =
+            "WARNING - Unable to read tasks from file.";
 
     /**
      * Loads task from file.
@@ -137,16 +142,17 @@ public class TaskStorage {
         return taskList;
     }
 
-    private static Task createTaskByCategory(String taskCategory, String... taskParameters) throws CorruptedFileException {
+    private static Task createTaskByCategory(String taskCategory, String... taskParameters)
+            throws CorruptedFileException {
         try {
             return switch (taskCategory) {
-                case "T" -> new ToDo(taskParameters[0]);
-                case "D" -> new Deadline(taskParameters[0],
-                        convertToDateTime(taskParameters[1]));
-                case "E" -> new Event(taskParameters[2],
-                        convertToDateTime(taskParameters[1]),
-                        DateTimeParser.parseDateTime(taskParameters[2], DATE_FORMAT));
-                default -> throw new CorruptedFileException();
+            case "T" -> new ToDo(taskParameters[0]);
+            case "D" -> new Deadline(taskParameters[0],
+                    convertToDateTime(taskParameters[1]));
+            case "E" -> new Event(taskParameters[2],
+                    convertToDateTime(taskParameters[1]),
+                    DateTimeParser.parseDateTime(taskParameters[2], DATE_FORMAT));
+            default -> throw new CorruptedFileException();
             };
         } catch (ArrayIndexOutOfBoundsException | DateTimeException e) {
             throw new CorruptedFileException();
@@ -157,7 +163,8 @@ public class TaskStorage {
         return segments.length < 3 || segments.length > 5;
     }
 
-    private static Task getTaskFromStorageEntryString(String taskStorageEntryString) throws CorruptedFileException {
+    private static Task getTaskFromStorageEntryString(String taskStorageEntryString)
+            throws CorruptedFileException {
         String[] segments = taskStorageEntryString.split(STORAGE_ENTRY_SEPARATOR);
 
         if (isStorageEntryCorrupted(segments)) {

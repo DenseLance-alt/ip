@@ -14,6 +14,7 @@ import chatbot.command.UnknownCommand;
 import chatbot.command.UnmarkCommand;
 import chatbot.exception.ChatbotException;
 import chatbot.exception.InvalidCommandException;
+import chatbot.storage.TaskStorage;
 
 /**
  * Parses commands.
@@ -26,25 +27,25 @@ public class CommandParser {
      * @throws ChatbotException Exceptions that occur due to invalid or unknown commands.
      */
     public static Command parseCommand(String input) throws ChatbotException {
-        if (input.contains("|")) {
+        if (input.contains(TaskStorage.STORAGE_ENTRY_DELIMITER)) {
             throw new InvalidCommandException(); // delimiter is reserved for saving to file
         }
 
-        String[] segments = input.split(" ", 2);
-        String commandString = segments[0].toUpperCase();
-        String fragment = segments.length == 2 ? segments[1] : "";
+        String[] inputSegments = input.split(" ", 2);
+        String commandString = inputSegments[0].toUpperCase();
+        String inputFragment = inputSegments.length == 2 ? inputSegments[1] : "";
         return switch (commandString) {
-        case "BYE" -> new ByeCommand(fragment);
-        case "CLEAR" -> new ClearCommand(fragment);
-        case "LIST" -> new ListCommand(fragment);
-        case "FIND" -> new FindCommand(fragment);
-        case "MARK" -> new MarkCommand(fragment);
-        case "UNMARK" -> new UnmarkCommand(fragment);
-        case "TODO" -> new ToDoCommand(fragment);
-        case "DEADLINE" -> new DeadlineCommand(fragment);
-        case "EVENT" -> new EventCommand(fragment);
-        case "DELETE" -> new DeleteCommand(fragment);
-        default -> new UnknownCommand(fragment);
+        case "BYE" -> new ByeCommand(inputFragment);
+        case "CLEAR" -> new ClearCommand(inputFragment);
+        case "LIST" -> new ListCommand(inputFragment);
+        case "FIND" -> new FindCommand(inputFragment);
+        case "MARK" -> new MarkCommand(inputFragment);
+        case "UNMARK" -> new UnmarkCommand(inputFragment);
+        case "TODO" -> new ToDoCommand(inputFragment);
+        case "DEADLINE" -> new DeadlineCommand(inputFragment);
+        case "EVENT" -> new EventCommand(inputFragment);
+        case "DELETE" -> new DeleteCommand(inputFragment);
+        default -> new UnknownCommand(inputFragment);
         };
     }
 }
