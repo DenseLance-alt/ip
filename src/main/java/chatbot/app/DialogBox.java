@@ -32,7 +32,14 @@ public class DialogBox extends HBox {
      * @param img Image of user or chatbot.
      */
     public DialogBox(String text, Image img) {
-        loadDialogBox();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(DIALOG_BOX_RESOURCE);
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         label.setText(text);
         displayImage.setImage(img);
     }

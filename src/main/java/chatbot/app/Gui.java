@@ -24,8 +24,6 @@ public class Gui extends Application {
     private static final String APPLICATION_NAME =
             "Yoshikage Kira Chatbot";
 
-    private YoshikageKira chatbot;
-
     /**
      * Initializes the application.
      * @param stage Container for GUI resources.
@@ -60,7 +58,7 @@ public class Gui extends Application {
     }
 
     private void initializeChatbot(FXMLLoader fxmlLoader) {
-        chatbot = new YoshikageKira();
+        YoshikageKira chatbot = new YoshikageKira();
         fxmlLoader.<MainWindow>getController().injectChatbotInstance(chatbot);
     }
 }
