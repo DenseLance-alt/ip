@@ -17,6 +17,14 @@ import chatbot.ui.Ui;
  * Provides the main logic of the app.
  */
 public class YoshikageKira {
+    // EXCEPTIONS
+    private static final String TASK_ID_IS_NAN_MESSAGE =
+            "\tINVALID PARAMETER - Task ID is not a number.";
+    private static final String TASK_ID_IS_NOT_FOUND_MESSAGE =
+            "\tINVALID PARAMETER - Task ID is not found in list of tasks.";
+    private static final String DATETIME_NOT_CORRECT_FORMAT_MESSAGE =
+            "\tINVALID PARAMETER - Datetime is not in correct format.";
+
     private Ui ui;
     private TaskList tasks;
 
@@ -38,11 +46,11 @@ public class YoshikageKira {
 
     /**
      * Gets response from chatbot based on user input.
-     * @param input
+     * @param input User input.
      * @return Response from chatbot.
      */
     public String getResponse(String input) {
-        String response = "";
+        String response;
         try {
             Command command = CommandParser.parseCommand(input);
             response = command.execute(ui, tasks);
@@ -50,27 +58,32 @@ public class YoshikageKira {
         } catch (ChatbotException | MissingFlagException | MissingParameterException e) {
             response = e.getMessage();
         } catch (NumberFormatException e) {
-            response = "\tINVALID PARAMETER - Task ID is not a number.";
+            response = TASK_ID_IS_NAN_MESSAGE;
         } catch (IndexOutOfBoundsException e) {
-            response = "\tINVALID PARAMETER - Task ID is not found in list of tasks.";
+            response = TASK_ID_IS_NOT_FOUND_MESSAGE;
         } catch (DateTimeException e) {
-            response = "\tINVALID PARAMETER - Datetime is not in correct format.";
+            response = DATETIME_NOT_CORRECT_FORMAT_MESSAGE;
         }
+        assert response != null : "Response from chatbot should not be NULL!";
         return response;
+    }
+
+    /**
+     * Displays response from chatbot based on user input.
+     * @param input User input.
+     */
+    public void printResponse(String input) {
+        System.out.println(getResponse(input));
     }
 
     /**
      * Executes program via CLI.
      */
     public void run() {
-        ui.printSeparator();
-        System.out.println(ui.sayHello());
-        ui.printSeparator();
+        ui.printSeparator(ui::printHello);
         while (!ui.isDone()) {
             String input = ui.getUserInput();
-            ui.printSeparator();
-            System.out.println(this.getResponse(input));
-            ui.printSeparator();
+            ui.printSeparator(() -> printResponse(input));
         }
     }
 

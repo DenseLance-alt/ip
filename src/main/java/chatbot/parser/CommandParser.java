@@ -27,13 +27,25 @@ public class CommandParser {
      * @throws ChatbotException Exceptions that occur due to invalid or unknown commands.
      */
     public static Command parseCommand(String input) throws ChatbotException {
+        checkInputForInvalidCharacter(input);
+        String commandString = getCommandFromInput(input);
+        String inputFragment = getFragmentFromInput(input);
+        return createCommand(commandString, inputFragment);
+    }
+
+    private static void checkInputForInvalidCharacter(String input) throws InvalidCommandException {
         if (input.contains(TaskStorage.STORAGE_ENTRY_DELIMITER)) {
             throw new InvalidCommandException(); // delimiter is reserved for saving to file
         }
+    }
 
-        String[] inputSegments = input.split(" ", 2);
-        String commandString = inputSegments[0].toUpperCase();
-        String inputFragment = inputSegments.length == 2 ? inputSegments[1] : "";
+    /**
+     * Creates command given its associated string, flags and parameters.
+     * @param commandString String associated to a command.
+     * @param inputFragment Remaining user input to process.
+     * @return Command to execute.
+     */
+    private static Command createCommand(String commandString, String inputFragment) {
         return switch (commandString) {
         case "BYE" -> new ByeCommand(inputFragment);
         case "CLEAR" -> new ClearCommand(inputFragment);
@@ -47,5 +59,24 @@ public class CommandParser {
         case "DELETE" -> new DeleteCommand(inputFragment);
         default -> new UnknownCommand(inputFragment);
         };
+    }
+
+    /**
+     * Retrieves a command string from input.
+     * @param input User input.
+     * @return String associated to a command.
+     */
+    private static String getCommandFromInput(String input) {
+        return input.split(" ", 2)[0].toUpperCase();
+    }
+
+    /**
+     * Retrieves flags and parameters from input.
+     * @param input User input.
+     * @return Flags and parameters.
+     */
+    private static String getFragmentFromInput(String input) {
+        String[] inputSegments = input.split(" ", 2);
+        return inputSegments.length == 2 ? inputSegments[1] : "";
     }
 }
