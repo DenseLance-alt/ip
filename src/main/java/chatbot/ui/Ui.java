@@ -88,6 +88,7 @@ public class Ui {
 
     /**
      * Displays separator between chatbot output on CLI.
+     * @param chatbotReplier Lambda that prints a response from the chatbot.
      */
     public void printSeparator(Runnable chatbotReplier) {
         System.out.println(SEPARATOR);

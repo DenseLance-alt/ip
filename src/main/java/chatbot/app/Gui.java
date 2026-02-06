@@ -35,7 +35,6 @@ public class Gui extends Application {
             Scene scene = createScene(fxmlLoader);
             setupStage(stage, scene);
             initializeChatbot(fxmlLoader);
-
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,9 +46,8 @@ public class Gui extends Application {
         stage.setTitle(APPLICATION_NAME);
 
         // Set window size limits
-        stage.setMinHeight(220);
-        stage.setMinWidth(417);
-        // stage.setMaxWidth(417); // prevent horizontal resize
+        stage.setMinHeight(600);
+        stage.setMinWidth(400);
     }
 
     private Scene createScene(FXMLLoader fxmlLoader) throws IOException {

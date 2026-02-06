@@ -37,6 +37,17 @@ public class YoshikageKira {
     }
 
     /**
+     *
+     */
+    public static String processResponseForGui(String response, boolean removeLineSeparator) {
+        String processedResponse = response.replaceAll("\t", "");
+        processedResponse = removeLineSeparator
+                ? processedResponse.replaceAll(System.lineSeparator(), "")
+                : processedResponse;
+        return processedResponse;
+    }
+
+    /**
      * Gets hello response from chatbot.
      * @return Hello response.
      */
