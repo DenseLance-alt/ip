@@ -26,7 +26,7 @@ public class MainWindow extends AnchorPane {
     private static final String CHATBOT_EXIT_IMAGE_LOCATION =
             "/images/hands.png";
 
-    private static final int TIME_TAKEN_TO_EXIT = 2;
+    private static final Duration TIME_TAKEN_TO_EXIT = Duration.seconds(2);
 
     @FXML
     private ScrollPane scrollPane;
@@ -126,7 +126,7 @@ public class MainWindow extends AnchorPane {
         Stage stage = (Stage) dialogContainer.getScene().getWindow();
         assert stage != null : "Main window cannot be closed!";
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(TIME_TAKEN_TO_EXIT), event -> stage.close()));
+                new KeyFrame(TIME_TAKEN_TO_EXIT, event -> stage.close()));
         timeline.play();
     }
     //@@author
