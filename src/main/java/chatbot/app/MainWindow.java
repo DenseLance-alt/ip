@@ -20,6 +20,8 @@ import javafx.util.Duration;
  * Controller for GUI.
  */
 public class MainWindow extends AnchorPane {
+    
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
