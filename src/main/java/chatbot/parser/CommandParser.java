@@ -9,6 +9,7 @@ import chatbot.command.EventCommand;
 import chatbot.command.FindCommand;
 import chatbot.command.ListCommand;
 import chatbot.command.MarkCommand;
+import chatbot.command.SortCommand;
 import chatbot.command.ToDoCommand;
 import chatbot.command.UnknownCommand;
 import chatbot.command.UnmarkCommand;
@@ -43,7 +44,7 @@ public class CommandParser {
      * Creates command given its associated string, flags and parameters.
      * @param commandString String associated to a command.
      * @param inputFragment Remaining user input to process.
-     * @return Command to execute.
+     * @return Command to execute.this.title.compareTo(other.title);
      */
     private static Command createCommand(String commandString, String inputFragment) {
         return switch (commandString) {
@@ -51,6 +52,7 @@ public class CommandParser {
         case "CLEAR" -> new ClearCommand(inputFragment);
         case "LIST" -> new ListCommand(inputFragment);
         case "FIND" -> new FindCommand(inputFragment);
+        case "SORT" -> new SortCommand(inputFragment);
         case "MARK" -> new MarkCommand(inputFragment);
         case "UNMARK" -> new UnmarkCommand(inputFragment);
         case "TODO" -> new ToDoCommand(inputFragment);

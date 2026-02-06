@@ -31,6 +31,11 @@ public class Event extends Task {
     }
 
     @Override
+    public LocalDateTime getDateTime() {
+        return from;
+    }
+
+    @Override
     public String toStorageEntryString() {
         return String.format(
                 "%s | %s | %s",

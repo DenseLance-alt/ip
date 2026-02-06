@@ -21,6 +21,8 @@ public class TaskList {
             "\tI have cleared your entire task list!";
     private static final String LIST_MATCHING_TASK_PREFIX_MESSAGE =
             "\tHere are the matching tasks in your list:";
+    private static final String SORT_TASK_MESSAGE =
+            "\tAlright, I have sorted your tasks by date.";
     private static final String MARK_TASK_PREFIX_MESSAGE =
             "\tNice! I've marked this task as done:\n\t  ";
     private static final String UNMARK_TASK_PREFIX_MESSAGE =
@@ -123,6 +125,14 @@ public class TaskList {
                 ? NO_MATCHING_TASK_MESSAGE
                 : LIST_MATCHING_TASK_PREFIX_MESSAGE
                 + formatTaskListAsString(filteredTaskList);
+    }
+
+    /**
+     * Sorts the list of tasks by date.
+     */
+    public String sortTasksByDate() {
+        tasks.sort(null);
+        return SORT_TASK_MESSAGE;
     }
 
     /**

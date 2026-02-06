@@ -28,6 +28,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public LocalDateTime getDateTime() {
+        return by;
+    }
+
+    @Override
     public String toStorageEntryString() {
         return String.format(
                 "%s | %s",
