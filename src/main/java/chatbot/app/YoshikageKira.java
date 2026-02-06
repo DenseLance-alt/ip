@@ -18,14 +18,14 @@ import chatbot.ui.Ui;
  */
 public class YoshikageKira {
     private Ui ui;
-    private TaskList taskList;
+    private TaskList tasks;
 
     /**
      * Initializes the chatbot.
      */
     public YoshikageKira() {
         ui = new Ui();
-        taskList = TaskStorage.loadTasks();
+        tasks = TaskStorage.loadTasks();
     }
 
     /**
@@ -45,8 +45,8 @@ public class YoshikageKira {
         String response = "";
         try {
             Command command = CommandParser.parseCommand(input);
-            response = command.execute(ui, taskList);
-            TaskStorage.saveTasks(taskList);
+            response = command.execute(ui, tasks);
+            TaskStorage.saveTasks(tasks);
         } catch (ChatbotException | MissingFlagException | MissingParameterException e) {
             response = e.getMessage();
         } catch (NumberFormatException e) {

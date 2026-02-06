@@ -29,25 +29,25 @@ public class TaskList {
     private static final String ADD_TASK_FORMATTED_MESSAGE =
             "\tGot it. I've added this task:\n\t  %s\n\tNow you have %d tasks in the list.";
 
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
-        taskList = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
-    protected TaskList(ArrayList<Task> taskList) {
-        this.taskList = taskList;
+    protected TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**
      * Converts task into a formatted string for printing.
-     * @param taskList List of tasks to convert.
+     * @param tasks List of tasks to convert.
      * @return Formatted string containing list of tasks
      */
-    private static String formatTaskListAsString(ArrayList<Task> taskList) {
+    private static String formatTaskListAsString(ArrayList<Task> tasks) {
         StringBuilder formattedString = new StringBuilder();
-        for (int i = 0; i < taskList.size(); i++) {
-            formattedString.append(formatTaskAsString(taskList.get(i), i));
+        for (int i = 0; i < tasks.size(); i++) {
+            formattedString.append(formatTaskAsString(tasks.get(i), i));
         }
         return formattedString.toString();
     }
@@ -69,8 +69,8 @@ public class TaskList {
      */
     private ArrayList<Task> filterTaskList(String keyword) {
         ArrayList<Task> filteredTaskList = new ArrayList<>();
-        for (int i = 0; i < taskList.size(); i++) {
-            Task task = taskList.get(i);
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
             String lowerCaseTaskName = task.getName().toLowerCase();
             if (lowerCaseTaskName.contains(keyword)) {
                 filteredTaskList.add(task);
@@ -80,15 +80,15 @@ public class TaskList {
     }
 
     public boolean hasTasks() {
-        return !taskList.isEmpty();
+        return !tasks.isEmpty();
     }
 
     public int countTasks() {
-        return taskList.size();
+        return tasks.size();
     }
 
     public Task getTask(int taskNumber) {
-        return taskList.get(taskNumber - 1);
+        return tasks.get(taskNumber - 1);
     }
 
     /**
@@ -96,7 +96,7 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String clearList() {
-        taskList.clear();
+        tasks.clear();
         return CLEAR_LIST_MESSAGE;
     }
 
@@ -106,7 +106,7 @@ public class TaskList {
      */
     public String listTasks() {
         return hasTasks()
-                ? LIST_TASK_PREFIX_MESSAGE + formatTaskListAsString(taskList)
+                ? LIST_TASK_PREFIX_MESSAGE + formatTaskListAsString(tasks)
                 : NO_TASK_MESSAGE;
     }
 
@@ -152,7 +152,7 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String removeTask(int taskNumber) {
-        Task task = taskList.remove(taskNumber - 1);
+        Task task = tasks.remove(taskNumber - 1);
         return String.format(REMOVE_TASK_FORMATTED_MESSAGE, task, countTasks());
     }
 
@@ -162,7 +162,7 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String addTask(Task task) {
-        taskList.add(task);
+        tasks.add(task);
         return String.format(ADD_TASK_FORMATTED_MESSAGE, task, countTasks());
     }
 }

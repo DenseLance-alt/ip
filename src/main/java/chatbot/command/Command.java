@@ -21,6 +21,19 @@ public abstract class Command {
     }
 
     /**
+     * Obtains task number from the given command fragment.
+     * @param fragment Command fragment containing only the task ID.
+     * @return Task number.
+     * @throws MissingParameterException Exceptions that occur due to missing parameters.
+     */
+    public static int getTaskNumberFromFragment(String fragment) throws MissingParameterException {
+        if ("".equals(fragment)) {
+            throw new MissingParameterException("Task ID");
+        }
+        return Integer.parseInt(fragment);
+    }
+
+    /**
      * Returns user input without the main command
      * @return User input without the main command.
      */
@@ -29,15 +42,25 @@ public abstract class Command {
     }
 
     /**
+     * Returns parameters provided by user input.
+     * @return Parameters provided by user input.
+     * @throws MissingParameterException Exceptions that occur due to missing parameters.
+     * @throws MissingFlagException      Exceptions that occur due to missing flags.
+     */
+    public String[] getParameters() throws MissingParameterException, MissingFlagException {
+        return new String[] {getFragment()};
+    }
+
+    /**
      * Executes user command.
      *
      * @param ui       User interface.
-     * @param taskList List of tasks.
+     * @param tasks List of tasks.
      * @return Notification to user about outcome.
      * @throws ChatbotException          Exceptions that occur due to invalid or unknown commands.
      * @throws MissingParameterException Exceptions that occur due to missing parameters.
      * @throws MissingFlagException      Exceptions that occur due to missing flags.
      */
-    public abstract String execute(Ui ui, TaskList taskList)
+    public abstract String execute(Ui ui, TaskList tasks)
             throws ChatbotException, MissingParameterException, MissingFlagException;
 }

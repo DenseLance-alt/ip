@@ -17,23 +17,39 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(Ui ui, TaskList taskList) throws MissingParameterException, MissingFlagException {
+    public String[] getParameters() throws MissingParameterException, MissingFlagException {
+        String[] parameters = new String[3];
+
         String fragment = getFragment();
         if ("".equals(fragment) || fragment.startsWith("/from")) {
             throw new MissingParameterException("Task name");
         }
-        String[] segments = fragment.split(" /from ", 2);
-        String event = segments[0];
-        if (segments.length < 2 || "".equals(segments[1]) || segments[1].startsWith("/to")) {
+
+        String[] processedFragments = fragment.split(" /from ", 2);
+        parameters[0] = processedFragments[0];
+        if (processedFragments.length < 2
+                || "".equals(processedFragments[1])
+                || processedFragments[1].startsWith("/to")) {
             throw new MissingFlagException("/from");
         }
-        segments = segments[1].split(" /to ", 2);
-        if (segments.length < 2 || "".equals(segments[1])) {
+
+        processedFragments = processedFragments[1].split(" /to ", 2);
+        parameters[1] = processedFragments[0];
+        if (processedFragments.length < 2 || "".equals(processedFragments[1])) {
             throw new MissingFlagException("/to");
         }
-        Event task = new Event(event,
-                DateTimeParser.parseDateTime(segments[0], TaskStorage.DATE_FORMAT),
-                DateTimeParser.parseDateTime(segments[1], TaskStorage.DATE_FORMAT));
-        return taskList.addTask(task);
+        parameters[2] = processedFragments[1];
+
+        return parameters;
+    }
+
+    @Override
+    public String execute(Ui ui, TaskList tasks) throws MissingParameterException, MissingFlagException {
+        String[] parameters = getParameters();
+
+        Event task = new Event(parameters[0],
+                DateTimeParser.parseDateTime(parameters[1], TaskStorage.DATE_FORMAT),
+                DateTimeParser.parseDateTime(parameters[2], TaskStorage.DATE_FORMAT));
+        return tasks.addTask(task);
     }
 }

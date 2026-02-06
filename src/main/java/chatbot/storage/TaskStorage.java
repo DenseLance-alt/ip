@@ -49,8 +49,8 @@ public class TaskStorage {
     public static TaskList loadTasks() {
         try {
             createFileIfNotExists();
-            ArrayList<Task> taskList = getTaskListFromFile();
-            return new TaskList(taskList);
+            ArrayList<Task> tasks = getTaskListFromFile();
+            return new TaskList(tasks);
         } catch (IOException e) {
             System.err.println(READ_FILE_FAILURE_WARNING);
         } catch (CorruptedFileException e) {
@@ -62,12 +62,12 @@ public class TaskStorage {
 
     /**
      * Saves tasks to file.
-     * @param taskList List of tasks to save.
+     * @param tasks List of tasks to save.
      */
-    public static void saveTasks(TaskList taskList) {
+    public static void saveTasks(TaskList tasks) {
         try {
             FileWriter f = openFileWriter();
-            writeTasksToFile(taskList, f);
+            writeTasksToFile(tasks, f);
             closeFileWriter(f);
         } catch (IOException e) {
             System.err.println(SAVE_FILE_FAILURE_WARNING);
@@ -114,9 +114,9 @@ public class TaskStorage {
         }
     }
 
-    private static void writeTasksToFile(TaskList taskList, FileWriter f) throws IOException {
-        for (int i = 1; i <= taskList.countTasks(); i++) {
-            String entryToStore = taskList.getTask(i).toStorageEntryString()
+    private static void writeTasksToFile(TaskList tasks, FileWriter f) throws IOException {
+        for (int i = 1; i <= tasks.countTasks(); i++) {
+            String entryToStore = tasks.getTask(i).toStorageEntryString()
                     + System.lineSeparator();
             f.write(entryToStore);
         }
@@ -133,13 +133,13 @@ public class TaskStorage {
     }
 
     private static ArrayList<Task> readFile(Scanner reader) throws CorruptedFileException {
-        ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         while (reader.hasNext()) {
             String taskStorageEntryString = reader.nextLine();
             Task task = getTaskFromStorageEntryString(taskStorageEntryString);
-            taskList.add(task);
+            tasks.add(task);
         }
-        return taskList;
+        return tasks;
     }
 
     private static Task createTaskByCategory(String taskCategory, String... taskParameters)

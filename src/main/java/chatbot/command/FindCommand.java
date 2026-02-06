@@ -13,11 +13,11 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(Ui ui, TaskList taskList) throws MissingParameterException {
+    public String execute(Ui ui, TaskList tasks) throws MissingParameterException {
         String fragment = getFragment();
         if ("".equals(fragment)) {
             throw new MissingParameterException("Keyword");
         }
-        return taskList.findTasks(fragment);
+        return tasks.findTasks(fragment);
     }
 }
