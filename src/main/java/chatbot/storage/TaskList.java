@@ -1,6 +1,7 @@
 package chatbot.storage;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import chatbot.task.Task;
 
@@ -45,11 +46,10 @@ public class TaskList {
      * @return Formatted string containing list of tasks
      */
     private static String formatTaskListAsString(ArrayList<Task> tasks) {
-        StringBuilder formattedString = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            formattedString.append(formatTaskAsString(tasks.get(i), i));
-        }
-        return formattedString.toString();
+        return Stream.iterate(0, i -> i + 1)
+                .limit(tasks.size())
+                .map(i -> formatTaskAsString(tasks.get(i), i))
+                .reduce("", String::concat);
     }
 
     /**
@@ -68,15 +68,11 @@ public class TaskList {
      * @return A list of tasks that contains the keyword.
      */
     private ArrayList<Task> filterTaskList(String keyword) {
-        ArrayList<Task> filteredTaskList = new ArrayList<>();
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
-            String lowerCaseTaskName = task.getName().toLowerCase();
-            if (lowerCaseTaskName.contains(keyword)) {
-                filteredTaskList.add(task);
-            }
-        }
-        return filteredTaskList;
+        ArrayList<Task> filteredTasks = new ArrayList<>();
+        toStream()
+                .filter(task -> task.getName().toLowerCase().contains(keyword))
+                .forEach(filteredTasks::add);
+        return filteredTasks;
     }
 
     public boolean hasTasks() {
@@ -89,6 +85,10 @@ public class TaskList {
 
     public Task getTask(int taskNumber) {
         return tasks.get(taskNumber - 1);
+    }
+
+    public Stream<Task> toStream() {
+        return tasks.stream();
     }
 
     /**

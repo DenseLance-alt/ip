@@ -115,11 +115,10 @@ public class TaskStorage {
     }
 
     private static void writeTasksToFile(TaskList tasks, FileWriter f) throws IOException {
-        for (int i = 1; i <= tasks.countTasks(); i++) {
-            String entryToStore = tasks.getTask(i).toStorageEntryString()
-                    + System.lineSeparator();
-            f.write(entryToStore);
-        }
+        String entriesToStore = tasks.toStream()
+                .map(task -> task.toStorageEntryString() + System.lineSeparator())
+                .reduce("", String::concat);
+        f.write(entriesToStore);
     }
 
     private static ArrayList<Task> getTaskListFromFile() throws CorruptedFileException {
