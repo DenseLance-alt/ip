@@ -1,5 +1,7 @@
 package chatbot.app;
 
+import java.io.InputStream;
+
 import chatbot.ui.Ui;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,12 +29,28 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private YoshikageKira chatbot;
-    private boolean canIgnoreInput = false;
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/hayato_kawajiri.png"));
-    private Image chatbotImage = new Image(this.getClass().getResourceAsStream("/images/yoshikage_kira.png"));
+    private boolean canIgnoreInput;
+
+    private Image userImage;
+    private Image chatbotImage;
 
     /**
-     * Initializes the GUI resources.
+     * Initializes the main window.
+     */
+    public MainWindow() {
+        canIgnoreInput = false;
+
+        InputStream userImageStream = getClass().getResourceAsStream("/images/hayato_kawajiri.png");
+        assert userImageStream != null : "User image should exist in resources folder!";
+        userImage = new Image(userImageStream);
+
+        InputStream chatbotImageStream = this.getClass().getResourceAsStream("/images/yoshikage_kira.png");
+        assert chatbotImageStream != null : "Chatbot image should exist in resources folder!";
+        chatbotImage = new Image(chatbotImageStream);
+    }
+
+    /**
+     * Initializes the GUI resources for the main window.
      */
     @FXML
     public void initialize() {
@@ -67,7 +85,6 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = chatbot.getResponse(input);
         Image chatbotImage = this.chatbotImage;
-        Timeline timeline = null;
 
         if (Ui.getFarewell().equals(response)) {
             //@@author DenseLance-alt-reused
@@ -75,12 +92,15 @@ public class MainWindow extends AnchorPane {
             // and https://stackoverflow.com/a/49881572
             // with minor modifications
             canIgnoreInput = true;
-            chatbotImage = new Image(this.getClass().getResourceAsStream("/images/hands.png"));
+
+            InputStream chatbotImageStream = this.getClass().getResourceAsStream("/images/hands.png");
+            assert chatbotImageStream != null : "Chatbot image should exist in resources folder!";
+            chatbotImage = new Image(chatbotImageStream);
 
             Stage stage = (Stage) dialogContainer.getScene().getWindow();
-            if (stage != null) {
-                timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> stage.close()));
-            }
+            assert stage != null : "Main window cannot be closed!";
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> stage.close()));
+            timeline.play(); // exit program
             //@@author
         }
 
@@ -89,10 +109,5 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getChatbotDialog(response.replaceAll("\t", ""), chatbotImage)
         );
         userInput.clear();
-
-        // Exit program
-        if (timeline != null) {
-            timeline.play();
-        }
     }
 }

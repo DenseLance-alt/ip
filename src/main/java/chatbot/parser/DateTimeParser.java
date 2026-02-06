@@ -17,6 +17,7 @@ public class DateTimeParser {
      * @return Date and time object.
      */
     public static LocalDateTime parseDateTime(String string, String pattern) {
+        assert string != null : "String representing datetime should not be null!";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDateTime.parse(string, formatter);
     }
@@ -27,6 +28,7 @@ public class DateTimeParser {
      * @return Date and time in the format provided.
      */
     public static String formatDateTime(LocalDateTime dt, String pattern) {
+        assert dt != null : "Datetime object should not be null!";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return dt.format(formatter);
     }

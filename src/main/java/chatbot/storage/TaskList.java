@@ -116,6 +116,7 @@ public class TaskList {
      * @return Notification to user about outcome.
      */
     public String findTasks(String keyword) {
+        assert keyword != null : "Keyword should not be NULL!";
         String lowerCaseKeyword = keyword.toLowerCase();
         ArrayList<Task> filteredTaskList = filterTaskList(lowerCaseKeyword);
         return filteredTaskList.isEmpty()
