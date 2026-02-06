@@ -1,6 +1,7 @@
 package chatbot.app;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,10 +18,13 @@ import javafx.scene.layout.HBox;
  * Creates a dialog box for GUI.
  */
 public class DialogBox extends HBox {
+    private static final URL DIALOG_BOX_RESOURCE =
+            MainWindow.class.getResource(Gui.DIALOG_BOX_RESOURCE_LOCATION);
+
     @FXML
-    private Label dialog;
+    private Label label;
     @FXML
-    private ImageView displayPicture;
+    private ImageView displayImage;
 
     /**
      * Initializes the dialog box for GUI.
@@ -28,17 +32,23 @@ public class DialogBox extends HBox {
      * @param img Image of user or chatbot.
      */
     public DialogBox(String text, Image img) {
+        loadDialogBox();
+        label.setText(text);
+        displayImage.setImage(img);
+    }
+
+    /**
+     * Loads dialog box onto GUI.
+     */
+    private void loadDialogBox() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(DIALOG_BOX_RESOURCE);
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        dialog.setText(text);
-        displayPicture.setImage(img);
     }
 
     /**
@@ -47,10 +57,10 @@ public class DialogBox extends HBox {
      */
     private void flip() {
         setAlignment(Pos.TOP_LEFT);
-        ObservableList<Node> tmp = FXCollections.observableArrayList(getChildren());
-        FXCollections.reverse(tmp);
-        getChildren().setAll(tmp);
-        dialog.getStyleClass().add("reply-label"); // link to css to flip reply bubble
+        ObservableList<Node> dialogBoxObservables = FXCollections.observableArrayList(getChildren());
+        FXCollections.reverse(dialogBoxObservables);
+        getChildren().setAll(dialogBoxObservables);
+        label.getStyleClass().add("reply-label"); // link to css to flipped reply bubble
     }
 
     /**
@@ -70,8 +80,8 @@ public class DialogBox extends HBox {
      * @return Dialog box of chatbot.
      */
     public static DialogBox getChatbotDialog(String s, Image i) {
-        var db = new DialogBox(s, i);
-        db.flip();
-        return db;
+        DialogBox dialogBox = new DialogBox(s, i);
+        dialogBox.flip();
+        return dialogBox;
     }
 }
