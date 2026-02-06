@@ -72,6 +72,7 @@ public class Ui {
      * @return Chatbot farewell message.
      */
     public String sayGoodbye() {
+        assert !isDone : "Chatbot should not be terminated yet!";
         scanner.close();
         isDone = true;
         return FAREWELL;
