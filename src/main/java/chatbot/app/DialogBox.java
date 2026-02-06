@@ -57,7 +57,7 @@ public class DialogBox extends HBox {
      * Creates a user dialog.
      * @param s Text sent by user.
      * @param i Image of user.
-     * @return
+     * @return Dialog box of user.
      */
     public static DialogBox getUserDialog(String s, Image i) {
         return new DialogBox(s, i);
@@ -67,7 +67,7 @@ public class DialogBox extends HBox {
      * Creates a chatbot dialog.
      * @param s Text sent by chatbot.
      * @param i Image of chatbot.
-     * @return
+     * @return Dialog box of chatbot.
      */
     public static DialogBox getChatbotDialog(String s, Image i) {
         var db = new DialogBox(s, i);

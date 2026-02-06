@@ -86,10 +86,19 @@ public class Ui {
     }
 
     /**
-     * Displays separator for readability.
+     * Displays separator between chatbot output on CLI.
      */
-    public void printSeparator() {
+    public void printSeparator(Runnable chatbotReplier) {
         System.out.println(SEPARATOR);
+        chatbotReplier.run();
+        System.out.println(SEPARATOR);
+    }
+
+    /**
+     * Displays greeting to user on CLI.
+     */
+    public void printHello() {
+        System.out.println(sayHello());
     }
 
     /**
