@@ -1,7 +1,5 @@
 package chatbot.app;
 
-import java.time.DateTimeException;
-
 import chatbot.command.Command;
 import chatbot.exception.ChatbotException;
 import chatbot.exception.ExceptionCategory;

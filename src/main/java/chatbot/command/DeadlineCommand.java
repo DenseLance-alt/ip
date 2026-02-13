@@ -35,7 +35,8 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public String execute(Ui ui, TaskList tasks) throws MissingParameterException, MissingFlagException, InvalidDateTimeException {
+    public String execute(Ui ui, TaskList tasks)
+            throws MissingParameterException, MissingFlagException, InvalidDateTimeException {
         String[] parameters = getParameters();
 
         LocalDateTime completionDate = DateTimeParser.parseDateTime(parameters[1], TaskStorage.DATE_FORMAT);
