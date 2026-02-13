@@ -14,6 +14,6 @@ public class ToDo extends Task {
 
     @Override
     public String getCategory() {
-        return "T";
+        return TaskCategory.TODO.toString();
     }
 }

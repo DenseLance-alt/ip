@@ -48,14 +48,14 @@ public class Ui {
     private static final String SEPARATOR = "\t____________________________________________________________";
 
     private Scanner scanner;
-    private boolean isDone;
+    private boolean isProgramTerminated;
 
     /**
      * Initializes the user interface.
      */
     public Ui() {
         scanner = new Scanner(System.in);
-        isDone = false;
+        isProgramTerminated = false;
     }
 
     /**
@@ -72,9 +72,9 @@ public class Ui {
      * @return Chatbot farewell message.
      */
     public String sayGoodbye() {
-        assert !isDone : "Chatbot should not be terminated yet!";
+        assert !isProgramTerminated : "Chatbot should not be terminated yet!";
         scanner.close();
-        isDone = true;
+        isProgramTerminated = true;
         return FAREWELL;
     }
 
@@ -115,7 +115,7 @@ public class Ui {
      * Checks if program has terminated.
      * @return Termination status.
      */
-    public boolean isDone() {
-        return isDone;
+    public boolean isProgramTerminated() {
+        return isProgramTerminated;
     }
 }

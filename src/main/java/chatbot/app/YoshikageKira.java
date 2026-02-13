@@ -37,7 +37,10 @@ public class YoshikageKira {
     }
 
     /**
-     *
+     * Processes chatbot response for GUI display by removing formatting characters.
+     * @param response The raw response from the chatbot.
+     * @param removeLineSeparator Whether to remove line separators.
+     * @return Processed response suitable for GUI display.
      */
     public static String processResponseForGui(String response, boolean removeLineSeparator) {
         String processedResponse = response.replaceAll("\t", "");
@@ -92,7 +95,7 @@ public class YoshikageKira {
      */
     public void run() {
         ui.printSeparator(ui::printHello);
-        while (!ui.isDone()) {
+        while (!ui.isProgramTerminated()) {
             String input = ui.getUserInput();
             ui.printSeparator(() -> printResponse(input));
         }

@@ -24,7 +24,7 @@ public class Deadline extends Task {
 
     @Override
     public String getCategory() {
-        return "D";
+        return TaskCategory.DEADLINE.toString();
     }
 
     @Override

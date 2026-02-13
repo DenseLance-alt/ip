@@ -27,7 +27,7 @@ public class Event extends Task {
 
     @Override
     public String getCategory() {
-        return "E";
+        return TaskCategory.EVENT.toString();
     }
 
     @Override
