@@ -115,6 +115,7 @@ public class MainWindow extends AnchorPane {
 
         DialogBox userDialogBox = DialogBox.getUserDialog(input, userImage);
         DialogBox chatbotDialogBox = DialogBox.getChatbotDialog(processedResponse, chatbotImage);
+        chatbotDialogBox.colorMessage();
         displayDialogBoxes(userDialogBox, chatbotDialogBox);
 
         userInput.clear();

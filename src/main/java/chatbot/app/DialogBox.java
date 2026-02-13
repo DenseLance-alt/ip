@@ -3,6 +3,7 @@ package chatbot.app;
 import java.io.IOException;
 import java.net.URL;
 
+import chatbot.exception.ExceptionCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -83,5 +84,22 @@ public class DialogBox extends HBox {
         DialogBox dialogBox = new DialogBox(s, i);
         dialogBox.flip();
         return dialogBox;
+    }
+
+    /**
+     * Colors message in the dialog box.
+     */
+    public void colorMessage() {
+        String text = label.getText();
+        if (ExceptionCategory.isErrorMessage(text)) {
+            colorErrorMessage();
+        }
+    }
+
+    /**
+     * Colors the error message in the dialog box.
+     */
+    public void colorErrorMessage() {
+        label.getStyleClass().add("error-label");
     }
 }
