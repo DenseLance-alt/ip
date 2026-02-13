@@ -1,5 +1,7 @@
 package chatbot.command;
 
+import java.time.LocalDateTime;
+
 import chatbot.exception.MissingFlagException;
 import chatbot.exception.MissingParameterException;
 import chatbot.parser.DateTimeParser;
@@ -35,8 +37,8 @@ public class DeadlineCommand extends Command {
     public String execute(Ui ui, TaskList tasks) throws MissingParameterException, MissingFlagException {
         String[] parameters = getParameters();
 
-        Deadline task = new Deadline(parameters[0],
-                DateTimeParser.parseDateTime(parameters[1], TaskStorage.DATE_FORMAT));
+        LocalDateTime completionDate = DateTimeParser.parseDateTime(parameters[1], TaskStorage.DATE_FORMAT);
+        Deadline task = new Deadline(parameters[0], completionDate);
         return tasks.addTask(task);
     }
 }

@@ -10,6 +10,6 @@ public abstract class ChatbotException extends Exception {
 
     @Override
     public String getMessage() {
-        return "\tINVALID COMMAND";
+        return "\tCHATBOT ERROR";
     }
 }

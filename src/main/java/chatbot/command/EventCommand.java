@@ -1,5 +1,9 @@
 package chatbot.command;
 
+import java.time.LocalDateTime;
+
+import chatbot.exception.ChatbotException;
+import chatbot.exception.InvalidDateTimeException;
 import chatbot.exception.MissingFlagException;
 import chatbot.exception.MissingParameterException;
 import chatbot.parser.DateTimeParser;
@@ -44,12 +48,16 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(Ui ui, TaskList tasks) throws MissingParameterException, MissingFlagException {
+    public String execute(Ui ui, TaskList tasks)
+            throws ChatbotException, MissingParameterException, MissingFlagException {
         String[] parameters = getParameters();
 
-        Event task = new Event(parameters[0],
-                DateTimeParser.parseDateTime(parameters[1], TaskStorage.DATE_FORMAT),
-                DateTimeParser.parseDateTime(parameters[2], TaskStorage.DATE_FORMAT));
+        LocalDateTime startDate = DateTimeParser.parseDateTime(parameters[1], TaskStorage.DATE_FORMAT);
+        LocalDateTime endDate = DateTimeParser.parseDateTime(parameters[2], TaskStorage.DATE_FORMAT);
+        if (startDate.isAfter(endDate)) {
+            throw new InvalidDateTimeException();
+        }
+        Event task = new Event(parameters[0], startDate, endDate);
         return tasks.addTask(task);
     }
 }
