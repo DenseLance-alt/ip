@@ -24,8 +24,6 @@ public class YoshikageKira {
             String.format("\t%s - Task ID is not a number.", ExceptionCategory.INVALID_PARAMETER);
     private static final String TASK_ID_IS_NOT_FOUND_MESSAGE =
             String.format("\t%s - Task ID is not found in list of tasks.", ExceptionCategory.INVALID_PARAMETER);
-    private static final String DATETIME_NOT_CORRECT_FORMAT_MESSAGE =
-            String.format("\t%s - Datetime is not in correct format.", ExceptionCategory.INVALID_PARAMETER);
 
     private Ui ui;
     private TaskList tasks;
@@ -77,8 +75,6 @@ public class YoshikageKira {
             response = TASK_ID_IS_NAN_MESSAGE;
         } catch (IndexOutOfBoundsException e) {
             response = TASK_ID_IS_NOT_FOUND_MESSAGE;
-        } catch (DateTimeException e) {
-            response = DATETIME_NOT_CORRECT_FORMAT_MESSAGE;
         }
         assert response != null : "Response from chatbot should not be NULL!";
         return response;

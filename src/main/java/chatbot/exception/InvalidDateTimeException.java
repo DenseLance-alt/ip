@@ -10,7 +10,7 @@ public class InvalidDateTimeException extends Exception {
 
     @Override
     public String getMessage() {
-        return String.format("\t%s - Start datetime is later than end datetime.",
+        return String.format("\t%s - Datetime provided is invalid.",
                 ExceptionCategory.INVALID_PARAMETER);
     }
 }

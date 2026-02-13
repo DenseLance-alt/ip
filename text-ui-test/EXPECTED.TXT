@@ -105,7 +105,7 @@
 	MISSING PARAMETER - Task name must be included in the input.
 	____________________________________________________________
 	____________________________________________________________
-	INVALID PARAMETER - Datetime is not in correct format.
+	INVALID PARAMETER - Datetime provided is invalid.
 	____________________________________________________________
 	____________________________________________________________
 	INVALID PARAMETER - Task ID is not found in list of tasks.

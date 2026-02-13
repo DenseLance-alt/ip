@@ -9,7 +9,7 @@ import chatbot.task.Task;
  * Stores and loads tasks locally.
  */
 public class TaskList {
-    public static final String DATE_FORMAT = "yyyy-MM-dd ha";
+    public static final String DATE_FORMAT = "uuuu-MM-dd ha";
 
     private static final String LIST_TASK_PREFIX_MESSAGE =
             "\tHere are the tasks in your list:";

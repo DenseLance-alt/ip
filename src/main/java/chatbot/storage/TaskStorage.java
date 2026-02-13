@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 import chatbot.exception.CorruptedFileException;
+import chatbot.exception.InvalidDateTimeException;
 import chatbot.parser.DateTimeParser;
 import chatbot.task.Deadline;
 import chatbot.task.Event;
@@ -23,7 +23,7 @@ import chatbot.task.ToDo;
  * Stores and loads tasks externally.
  */
 public class TaskStorage {
-    public static final String DATE_FORMAT = "d/M/yyyy H:mm";
+    public static final String DATE_FORMAT = "d/M/uuuu H:mm";
     public static final String STORAGE_ENTRY_DELIMITER = "\\|";
 
     private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
@@ -74,8 +74,12 @@ public class TaskStorage {
         }
     }
 
-    private static LocalDateTime convertToDateTime(String string) {
-        return DateTimeParser.parseDateTime(string, DATE_FORMAT);
+    private static LocalDateTime convertToDateTime(String string) throws CorruptedFileException {
+        try {
+            return DateTimeParser.parseDateTime(string, DATE_FORMAT);
+        } catch (InvalidDateTimeException e) {
+            throw new CorruptedFileException();
+        }
     }
 
     private static FileWriter openFileWriter() throws IOException {
@@ -150,10 +154,10 @@ public class TaskStorage {
                     convertToDateTime(taskParameters[1]));
             case "E" -> new Event(taskParameters[2],
                     convertToDateTime(taskParameters[1]),
-                    DateTimeParser.parseDateTime(taskParameters[2], DATE_FORMAT));
+                    convertToDateTime(taskParameters[2]));
             default -> throw new CorruptedFileException();
             };
-        } catch (ArrayIndexOutOfBoundsException | DateTimeException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new CorruptedFileException();
         }
     }
