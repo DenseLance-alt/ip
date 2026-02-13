@@ -29,8 +29,7 @@ public class DateTimeParserTest {
         String input = "01-01-2026 23:59";
         String pattern = "yyyy-MM-dd HH:mm:ss";
 
-        assertThrows(DateTimeParseException.class,
-                () -> DateTimeParser.parseDateTime(input, pattern));
+        assertThrows(DateTimeParseException.class, () -> DateTimeParser.parseDateTime(input, pattern));
     }
 
     @Test
