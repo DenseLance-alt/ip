@@ -10,7 +10,8 @@ public class MissingParameterException extends Exception {
 
     @Override
     public String getMessage() {
-        return String.format("\tMISSING PARAMETER - %s must be included in the input.",
+        return String.format("\t%s - %s must be included in the input.",
+                ExceptionCategory.MISSING_PARAMETER,
                 super.getMessage());
     }
 }

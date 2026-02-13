@@ -2,7 +2,6 @@ package chatbot.command;
 
 import java.time.LocalDateTime;
 
-import chatbot.exception.ChatbotException;
 import chatbot.exception.InvalidDateTimeException;
 import chatbot.exception.MissingFlagException;
 import chatbot.exception.MissingParameterException;
@@ -49,7 +48,7 @@ public class EventCommand extends Command {
 
     @Override
     public String execute(Ui ui, TaskList tasks)
-            throws ChatbotException, MissingParameterException, MissingFlagException {
+            throws MissingParameterException, MissingFlagException, InvalidDateTimeException {
         String[] parameters = getParameters();
 
         LocalDateTime startDate = DateTimeParser.parseDateTime(parameters[1], TaskStorage.DATE_FORMAT);

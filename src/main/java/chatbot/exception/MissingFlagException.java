@@ -11,7 +11,8 @@ public class MissingFlagException extends Exception {
     @Override
     public String getMessage() {
         return String.format(
-                "\tMISSING FLAG - '%s' and its positional argument must be %s\tincluded in the input.",
+                "\t%s - '%s' and its positional argument must be %s\tincluded in the input.",
+                ExceptionCategory.MISSING_FLAG,
                 super.getMessage(),
                 System.lineSeparator());
     }

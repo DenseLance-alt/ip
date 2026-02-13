@@ -1,8 +1,16 @@
 package chatbot.exception;
 
-public class InvalidDateTimeException extends ChatbotException {
+/**
+ * Exception that occurs due to an invalid datetime range provided.
+ */
+public class InvalidDateTimeException extends Exception {
+    public InvalidDateTimeException() {
+        super();
+    }
+
     @Override
     public String getMessage() {
-        return super.getMessage() + " - Start datetime is later than end datetime.";
+        return String.format("\t%s - Start datetime is later than end datetime.",
+                ExceptionCategory.INVALID_PARAMETER);
     }
 }

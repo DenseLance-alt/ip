@@ -10,6 +10,6 @@ public class CorruptedFileException extends Exception {
 
     @Override
     public String getMessage() {
-        return "\tCORRUPTED FILE - File is not in correct format.";
+        return String.format("\t%s - File is not in correct format.", ExceptionCategory.CORRUPTED_FILE);
     }
 }

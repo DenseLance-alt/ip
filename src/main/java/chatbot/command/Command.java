@@ -1,6 +1,7 @@
 package chatbot.command;
 
 import chatbot.exception.ChatbotException;
+import chatbot.exception.InvalidDateTimeException;
 import chatbot.exception.MissingFlagException;
 import chatbot.exception.MissingParameterException;
 import chatbot.storage.TaskList;
@@ -62,5 +63,5 @@ public abstract class Command {
      * @throws MissingFlagException      Exceptions that occur due to missing flags.
      */
     public abstract String execute(Ui ui, TaskList tasks)
-            throws ChatbotException, MissingParameterException, MissingFlagException;
+            throws ChatbotException, MissingParameterException, MissingFlagException, InvalidDateTimeException;
 }

@@ -1,5 +1,8 @@
 package chatbot.task;
 
+/**
+ * Set of task categories.
+ */
 public enum TaskCategory {
     TODO("T"),
     DEADLINE("D"),
