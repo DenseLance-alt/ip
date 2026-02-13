@@ -152,7 +152,7 @@ public class TaskStorage {
             case "T" -> new ToDo(taskParameters[0]);
             case "D" -> new Deadline(taskParameters[0],
                     convertToDateTime(taskParameters[1]));
-            case "E" -> new Event(taskParameters[2],
+            case "E" -> new Event(taskParameters[0],
                     convertToDateTime(taskParameters[1]),
                     convertToDateTime(taskParameters[2]));
             default -> throw new CorruptedFileException();

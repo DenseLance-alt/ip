@@ -1,18 +1,15 @@
-# Project template
+[![Java CI](https://github.com/DenseLance-alt/ip/actions/workflows/gradle.yml/badge.svg)](https://github.com/DenseLance-alt/ip/actions/workflows/gradle.yml)
 
-This is a project template for a greenfield Java project. Given below are instructions on how to use it.
+# Credit for Reused and AI-Generated Work
 
-## Setting up in Intellij
+* For small code snippets, I have provided the relevant credits inline.
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+* I have used GitHub Copilot (Claude Haiku 4.5) to improve my code quality. The prompt as well as the code that was modified is detailed in `AI.md`.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/chatbot/app/YoshikageKira.java` file, right-click it, and choose `Run YoshikageKira()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see the famous monologue made by the man himself.
-
-**Warning:** Keep the `src\ui\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+* The images used are indirectly derived from the animation "JoJo's Bizarre Adventure: Diamond Is Unbreakable" by David Productions, based on the original manga series by Hirohiko Araki. The direct source of the images are listed below:
+  
+  * `hands.png`: https://www.youtube.com/watch?v=SJcP-qnYRMI
+  
+  * `hayato_kawajiri.png`: https://jojowiki.com/index.php?title=Category:Images_of_Hayato_Kawajiri&fileuntil=WSJDiUCards.jpg
+  
+  * `yoshikage_kira.png`: https://www.youtube.com/watch?v=hCqUw7g7KJg
