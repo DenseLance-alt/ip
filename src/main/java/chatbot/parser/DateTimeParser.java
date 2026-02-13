@@ -30,7 +30,7 @@ public class DateTimeParser {
     public static String formatDateTime(LocalDateTime dt, String pattern) {
         assert dt != null : "Datetime object should not be null!";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        return dt.format(formatter);
+        return dt.format(formatter).toLowerCase();
     }
     //@@author
 }
