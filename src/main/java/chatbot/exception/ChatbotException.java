@@ -10,6 +10,6 @@ public abstract class ChatbotException extends Exception {
 
     @Override
     public String getMessage() {
-        return "\tCHATBOT ERROR";
+        return "\t" + ExceptionCategory.CHATBOT_ERROR;
     }
 }

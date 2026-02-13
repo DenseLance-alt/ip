@@ -4,6 +4,8 @@ import java.time.DateTimeException;
 
 import chatbot.command.Command;
 import chatbot.exception.ChatbotException;
+import chatbot.exception.ExceptionCategory;
+import chatbot.exception.InvalidDateTimeException;
 import chatbot.exception.MissingFlagException;
 import chatbot.exception.MissingParameterException;
 import chatbot.parser.CommandParser;
@@ -19,11 +21,11 @@ import chatbot.ui.Ui;
 public class YoshikageKira {
     // EXCEPTIONS
     private static final String TASK_ID_IS_NAN_MESSAGE =
-            "\tINVALID PARAMETER - Task ID is not a number.";
+            String.format("\t%s - Task ID is not a number.", ExceptionCategory.INVALID_PARAMETER);
     private static final String TASK_ID_IS_NOT_FOUND_MESSAGE =
-            "\tINVALID PARAMETER - Task ID is not found in list of tasks.";
+            String.format("\t%s - Task ID is not found in list of tasks.", ExceptionCategory.INVALID_PARAMETER);
     private static final String DATETIME_NOT_CORRECT_FORMAT_MESSAGE =
-            "\tINVALID PARAMETER - Datetime is not in correct format.";
+            String.format("\t%s - Datetime is not in correct format.", ExceptionCategory.INVALID_PARAMETER);
 
     private Ui ui;
     private TaskList tasks;
@@ -69,7 +71,7 @@ public class YoshikageKira {
             Command command = CommandParser.parseCommand(input);
             response = command.execute(ui, tasks);
             TaskStorage.saveTasks(tasks);
-        } catch (ChatbotException | MissingFlagException | MissingParameterException e) {
+        } catch (ChatbotException | MissingFlagException | MissingParameterException | InvalidDateTimeException e) {
             response = e.getMessage();
         } catch (NumberFormatException e) {
             response = TASK_ID_IS_NAN_MESSAGE;
