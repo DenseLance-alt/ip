@@ -24,6 +24,9 @@ public class Gui extends Application {
     private static final String APPLICATION_NAME =
             "Yoshikage Kira Chatbot";
 
+    private static final double STAGE_MIN_HEIGHT = 735;
+    private static final double STAGE_MIN_WIDTH = 537.5;
+
     /**
      * Initializes the application.
      * @param stage Container for GUI resources.
@@ -46,8 +49,8 @@ public class Gui extends Application {
         stage.setTitle(APPLICATION_NAME);
 
         // Set window size limits
-        stage.setMinHeight(600);
-        stage.setMinWidth(400);
+        stage.setMinHeight(STAGE_MIN_HEIGHT);
+        stage.setMinWidth(STAGE_MIN_WIDTH);
     }
 
     private Scene createScene(FXMLLoader fxmlLoader) throws IOException {

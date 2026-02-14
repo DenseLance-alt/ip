@@ -61,7 +61,7 @@ public class TaskList {
      * @return Formatted string containing a task.
      */
     private static String formatTaskAsString(Task task, int index) {
-        return String.format("\n\t%d.%s", index + 1, task);
+        return String.format("\n\t%d. %s", index + 1, task);
     }
 
     /**
