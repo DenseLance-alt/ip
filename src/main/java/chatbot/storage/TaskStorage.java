@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import chatbot.exception.CorruptedFileException;
 import chatbot.exception.InvalidDateTimeException;
+import chatbot.exception.TaskStorageFailureException;
 import chatbot.parser.DateTimeParser;
 import chatbot.task.Deadline;
 import chatbot.task.Event;
@@ -24,53 +25,42 @@ import chatbot.task.ToDo;
  */
 public class TaskStorage {
     public static final String DATE_FORMAT = "d/M/uuuu H:mm";
+
     public static final String STORAGE_ENTRY_DELIMITER = "\\|";
+    public static final String STORAGE_ENTRY_SEPARATOR = " " + STORAGE_ENTRY_DELIMITER + " ";
+    public static final String TASK_STATUS_ICON = "X";
 
     private static final Path FILE_PATH = Paths.get("./temp/tasks.txt");
-
-    // STRING PROCESSING
-    private static final String STORAGE_ENTRY_SEPARATOR = " " + STORAGE_ENTRY_DELIMITER + " ";
-    private static final String TASK_STATUS_ICON = "X";
-
-    // WARNINGS
-    private static final String SAVE_FILE_FAILURE_WARNING =
-            "WARNING - Unable to save tasks to file.";
-    private static final String CORRUPTED_FILE_FAILURE_WARNING =
-            "WARNING - Save file is corrupted. Resetting save file.";
-    private static final String RESET_FILE_FAILURE_WARNING =
-            "WARNING - Unable to reset and create new file.";
-    private static final String READ_FILE_FAILURE_WARNING =
-            "WARNING - Unable to read tasks from file.";
 
     /**
      * Loads task from file.
      * @return List of tasks.
      */
-    public static TaskList loadTasks() {
+    public static TaskList loadTasks() throws TaskStorageFailureException {
         try {
             createFileIfNotExists();
             ArrayList<Task> tasks = getTaskListFromFile();
             return new TaskList(tasks);
         } catch (IOException e) {
-            System.err.println(READ_FILE_FAILURE_WARNING);
+            throw new TaskStorageFailureException(TaskStorageFailureException.READ_FILE_FAILURE_WARNING);
         } catch (CorruptedFileException e) {
-            System.err.println(CORRUPTED_FILE_FAILURE_WARNING);
             createFile();
+            throw new TaskStorageFailureException(TaskStorageFailureException.CORRUPTED_FILE_FAILURE_WARNING);
         }
-        return new TaskList();
     }
 
     /**
      * Saves tasks to file.
      * @param tasks List of tasks to save.
      */
-    public static void saveTasks(TaskList tasks) {
+    public static void saveTasks(TaskList tasks) throws TaskStorageFailureException {
         try {
+            createFileIfNotExists();
             FileWriter f = openFileWriter();
             writeTasksToFile(tasks, f);
             closeFileWriter(f);
         } catch (IOException e) {
-            System.err.println(SAVE_FILE_FAILURE_WARNING);
+            throw new TaskStorageFailureException(TaskStorageFailureException.SAVE_FILE_FAILURE_WARNING);
         }
     }
 
@@ -94,12 +84,12 @@ public class TaskStorage {
         return new Scanner(FILE_PATH.toFile());
     }
 
-    private static void createFile() {
+    private static void createFile() throws TaskStorageFailureException {
         try {
             FileWriter f = openFileWriter();
             closeFileWriter(f);
         } catch (IOException e) {
-            System.err.println(RESET_FILE_FAILURE_WARNING);
+            throw new TaskStorageFailureException(TaskStorageFailureException.READ_FILE_FAILURE_WARNING);
         }
     }
 
@@ -111,11 +101,12 @@ public class TaskStorage {
         return Files.exists(FILE_PATH);
     }
 
-    private static void createFileIfNotExists() throws IOException {
-        if (!doesFileExist()) {
-            createDirectory();
-            createFile();
+    private static void createFileIfNotExists() throws IOException, TaskStorageFailureException {
+        if (doesFileExist()) {
+            return;
         }
+        createDirectory();
+        createFile();
     }
 
     private static void writeTasksToFile(TaskList tasks, FileWriter f) throws IOException {
@@ -125,14 +116,13 @@ public class TaskStorage {
         f.write(entriesToStore);
     }
 
-    private static ArrayList<Task> getTaskListFromFile() throws CorruptedFileException {
+    private static ArrayList<Task> getTaskListFromFile() throws CorruptedFileException, TaskStorageFailureException {
         try {
             Scanner reader = getScanner();
             return readFile(reader);
         } catch (FileNotFoundException e) {
-            System.err.println(READ_FILE_FAILURE_WARNING);
+            throw new TaskStorageFailureException(TaskStorageFailureException.READ_FILE_FAILURE_WARNING);
         }
-        return new ArrayList<>();
     }
 
     private static ArrayList<Task> readFile(Scanner reader) throws CorruptedFileException {

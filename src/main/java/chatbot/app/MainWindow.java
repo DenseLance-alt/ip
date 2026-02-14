@@ -85,8 +85,21 @@ public class MainWindow extends AnchorPane {
      */
     public void injectChatbotInstance(YoshikageKira chatbot) {
         this.chatbot = chatbot;
+        displayStorageFailureIfExists();
         String helloMessage = YoshikageKira.processResponseForGui(chatbot.getHello(), true);
         DialogBox chatbotDialogBox = DialogBox.getChatbotDialog(helloMessage, chatbotImage);
+        displayDialogBoxes(chatbotDialogBox);
+    }
+
+    private void displayStorageFailureIfExists() {
+        String storageFailureMessage = chatbot.getStorageFailureMessage();
+        if (storageFailureMessage == null) {
+            return;
+        }
+        String processedStorageFailureMessage = YoshikageKira.processResponseForGui(
+                storageFailureMessage, true);
+        DialogBox chatbotDialogBox = DialogBox.getChatbotDialog(processedStorageFailureMessage, chatbotImage);
+        chatbotDialogBox.colorMessage();
         displayDialogBoxes(chatbotDialogBox);
     }
 
