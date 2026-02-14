@@ -4,14 +4,14 @@ Have you wondered what bites the dust felt like?
 
 Introducing JoJo's Bizzare Adventure antagonist Yoshikage Kira 💀. Now he helps you to manage your tasks as a chatbot. Ain't that wacky?
 
-<img title="" src="Ui.png" alt="" width="333" data-align="center">
+<center><img title="" src="Ui.png" alt="ChatbotUI" width="333"></center>
 
 ---
 
 ## 📖 Table of Contents
 
-1. [Quick Start](#quick-start)
-2. [Usage](#usage)
+1. [Quick Start](#-quick-start)
+2. [Usage](#-usage)
    - [Add Tasks: `todo`, `deadline`, `event`](#add-tasks-todo-deadline-event)
    - [List Tasks: `list`](#list-tasks-list)
    - [Delete Tasks: `delete`](#delete-tasks-delete)
@@ -21,8 +21,8 @@ Introducing JoJo's Bizzare Adventure antagonist Yoshikage Kira 💀. Now he help
    - [Sort Tasks: `sort`](#sort-tasks-sort)
    - [Clear Task List: `clear`](#clear-task-list-clear)
    - [Exit Program: `bye`](#exit-program-bye)
-3. [FAQ](#faq)
-4. [Known Issues](#known-issues)
+3. [FAQ](#-faq)
+4. [Known Issues](#-known-issues)
 
 ---
 
@@ -86,11 +86,15 @@ Expected Output:
   Now you have 3 tasks in the list.
   ```
 
+<br>
+
 ### List Tasks: `list`
 
 Shows all tasks in the task list.
 
 Format: `list`
+
+<br>
 
 ### Delete Tasks: `delete`
 
@@ -116,6 +120,8 @@ Expected Output:
   Now you have 2 tasks in the list.
   ```
 
+<br>
+
 ### Find Tasks: `find`
 
 Finds all tasks that contain a specific keyword.
@@ -138,6 +144,8 @@ Expected Output:
     2.[D][] return book
   ```
 
+<br>
+
 ### Mark Tasks: `mark`
 
 Marks a task as complete.
@@ -154,6 +162,8 @@ Expected Output:
   Nice! I've marked this task as done:
     [T][X] read book
   ```
+
+<br>
 
 ### Unmark Tasks: `unmark`
 
@@ -172,6 +182,8 @@ Expected Output:
     [T][] read book
   ```
 
+<br>
+
 ### Sort Tasks: `sort`
 
 Sorts the task list by chronological order.
@@ -184,11 +196,15 @@ Format: `sort`
 
 * Task name is used to arrange two tasks with the same date.
 
+<br>
+
 ### Clear Task List: `clear`
 
 Deletes all tasks in the task list.
 
 Format: `clear`
+
+<br>
 
 ### Exit Program: `bye`
 
