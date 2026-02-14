@@ -4,7 +4,7 @@
 
 * For small code snippets, I have provided the relevant credits inline.
 
-* I have used GitHub Copilot (Claude Haiku 4.5) to improve my code quality. The prompt as well as the code that was modified is detailed in `AI.md`.
+* I have used GitHub Copilot (Claude Haiku 4.5) to improve my code quality and create more JUnit tests. The prompt as well as the code that was added/modified is detailed in `AI.md`.
 
 * The images used are indirectly derived from the animation "JoJo's Bizarre Adventure: Diamond Is Unbreakable" by David Productions, based on the original manga series by Hirohiko Araki. The direct source of the images are listed below:
   
