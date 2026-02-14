@@ -1,12 +1,6 @@
-/* Reference guide for css: https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html */
-
 .root {
-    /* Create a looked-up color called "main-color" within root. */
     main-color: rgb(136, 186, 240);
     -fx-background-color: main-color;
-    /* We can't directly adjust the opacity of the background image in .root.
-    However, we can set a colored, translucent background in .scroll-pane with
-    -fx-background-color: rgba(0,0,0,.5); */
 }
 
 .text-field {
@@ -14,7 +8,6 @@
     -fx-font: 20px "Arial";
 }
 
-/* Button states: default, hover, pressed */
 .button {
     -fx-background-color: DARKGRAY;
     -fx-font: italic bold 16px "Arial";
@@ -36,7 +29,7 @@
 }
 
 .scroll-bar {
-    -fx-font-size: 10px;  /* Change width of scroll bar. */
+    -fx-font-size: 10px;
     -fx-background-color: main-color;
 }
 
@@ -45,7 +38,6 @@
     -fx-background-radius: 1em;
 }
 
-/* Hides the increment and decrement buttons. */
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {
     -fx-pref-height: 0;
